@@ -114,16 +114,17 @@
 
 
 
-<meta name="description" content="Hexo博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo很酷哦！--SHi JIAN TAO">
-<meta property="og:url" content="https://taogeren.gitee.io/archives/2018/page/2/index.html">
+<meta name="description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java第二十九天笔记">
+<meta property="og:url" content="https://taogeren.gitee.io/2018/10/30/index29/index.html">
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
-<meta property="og:description" content="Hexo博客">
+<meta property="og:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-30T07:29:31.067Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo很酷哦！--SHi JIAN TAO">
-<meta name="twitter:description" content="Hexo博客">
+<meta name="twitter:title" content="java第二十九天笔记">
+<meta name="twitter:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
 
 
 
@@ -157,7 +158,7 @@
 
 
 
-  <title>归档 | Hexo很酷哦！--SHi JIAN TAO</title>
+  <title>java第二十九天笔记 | Hexo很酷哦！--SHi JIAN TAO</title>
   
 
 
@@ -176,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -311,115 +312,251 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://taogeren.gitee.io/2018/10/30/index29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SHi Jian Tao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo很酷哦！--SHi JIAN TAO">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">java第二十九天笔记</h1>
         
+
+        <div class="post-meta">
+		
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T15:28:40+08:00">
+                2018-10-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T15:29:31+08:00">
+                2018-10-30
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 26 篇日志。 继续努力。
-      </span>
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/30/index29/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://taogeren.gitee.io/2018/10/30/index29/" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/30/index29/" class="leancloud_visitors" data-flag-title="java第二十九天笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  770字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
+      
 
+      
+        <p>一:线程互斥<br>   并发访问的线程加上同步锁之后就称为线程互斥。<br>   谁抢到了对象锁的线程就先执行。<br>   没有抢到对象锁的线程就等待对象锁。<br>   加同步锁，加在共享对象上。<br>   每一个对象都有唯一的一把锁。<br>   lock对象锁—-&gt;执行代码——&gt;unlock对象锁</p>
+<p>synchronized(共享区){临界区}<br>共享区：多线程同时操作同一个对象<br>临界区：多线程对共享区进行操作的代码区<br>synchronized可以放在方法上，就是一个同步方法。</p>
+<p>将所有影响的方法都定义成线程安全的方法就变成了线程安全的类。<br>线程安全的类—效率低</p>
+<p>二:线程的通信—&gt;线程同步(操作的也是同一个对象)<br>线程互斥谁先抢到对象锁就谁先执行(如抛绣球)。<br>线程同步会控制线程执行的先后顺序。<br>        线程同步线程会有依赖关系。<br>一个boy存钱，一个girl取钱。必须先存钱后取钱。就是线程同步。<br>重复(存钱—-&gt;取钱)<br>存钱之后通知可以取钱。<br>取钱之后通知可以存钱。<br>并且是先存后取<br>   男:标志位flag = false;存钱 flag=true;<br>   女:标志位flag = true;取钱 flag=false;<br>模拟生成者和消费者—针对产品<br> 生成者:从1到100累加的和作为产品。<br> 消费者:打印该产品。<br>线程通信的步骤：<br>1)找到共有对象。<br>2)wait(),notify(),notifyAll()—Object类中的方法。<br>    需要对同一个资源等待，唤醒才有效。<br>    是针对对象进行等待和通知。这些方法一定要放在<br>    synchronized关键字中，用来保护共有资源。<br> 生产者生成产品之后通知消费者–notify<br> 消费者等待生产者生产产品—wait<br>3)保证wait()执行在notifyAll()方法的前面.使用标志变量。<br> notifyAll()之前先判断有没有线程在等待。<br> 如果有就通知，没有就小睡一下只有有等待线程出现。</p>
+<p>sleep():不会释放对象锁。<br>wait()：让当前线程进入等待状态，会释放对象锁。<br>notify()：通知等待中的某个线程进入到就绪状态。会释放对象锁。<br>notifyAll():通知等待中的所有线程进入到就绪状态。会释放对象锁。<br>可以通过公交车和人和师傅来说明</p>
+<p>三：线程的死锁<br> 多个线程同时操作多个对象很容易产生死锁。<br> 解决方式：给多个对象加对象锁的时候。<br>           将加锁的顺序保持一致，就可以避免死锁。<br>四：Thread类中其他方法<br>yield():当前线程让出CPU，给比自己优先级别还高的线程。<br>    如果当前没有比自己优先级还高的线程就没有效果。<br>setPrioirity(int)设置线程的优先级.整数越大优先级越高。<br>         取值范围在1到10.<br>         但是设置优先级高就不一定会先执行，<br>         还是会看CPU的调度。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SHI JIAN TAO
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://taogeren.gitee.io/2018/10/30/index29/" title="java第二十九天笔记">https://taogeren.gitee.io/2018/10/30/index29/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">SHI JIAN TAO</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/29/index27 /" itemprop="url">
-              
-                <span itemprop="name">java第二十七天笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-29T16:49:26+08:00"
-              content="2018-10-29" >
-          10-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/index28/" rel="next" title="java第二十八天笔记">
+                <i class="fa fa-chevron-left"></i> java第二十八天笔记
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/26/index26/" itemprop="url">
-              
-                <span itemprop="name">java第二十六天笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-26T09:53:32+08:00"
-              content="2018-10-26" >
-          10-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-    </div>
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2018/page/13/">13</a><a class="extend next" rel="next" href="/archives/2018/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -427,6 +564,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -679,6 +823,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1236,26 +1384,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
