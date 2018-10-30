@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="一:Static  1)修饰变量(只能修饰实例变量)—–&amp;gt;静态变量 比如:每次闯关游戏的总分数，应该是第一次闯关 的分数+第二次闯关的分数+第三次闯关方法…. 这个时候就需要使用static去保存了。     a)所有类实例共享     b)使用静态变量      类名.变量名     c)静态变量是属于这个类       非静态变量是属于对象     d)代码加载到内存静态变量就存在">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T11:25:47.602Z">
+<meta property="og:updated_time" content="2018-10-30T11:58:48.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第十五天笔记">
 <meta name="twitter:description" content="一:Static  1)修饰变量(只能修饰实例变量)—–&amp;gt;静态变量 比如:每次闯关游戏的总分数，应该是第一次闯关 的分数+第二次闯关的分数+第三次闯关方法…. 这个时候就需要使用static去保存了。     a)所有类实例共享     b)使用静态变量      类名.变量名     c)静态变量是属于这个类       非静态变量是属于对象     d)代码加载到内存静态变量就存在">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-18T19:25:47+08:00">
-                2018-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:58:48+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  804字
+                  2,621字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  12分钟
                 </span>
               
             </div>
@@ -470,6 +470,305 @@
 <p>   5)静态导入<br>import java.lang.Math;<br>     使用：Math.random()</p>
 <p>import static java.lang.Math.*;<br>    使用：random()</p>
 <p>二：final<br>  1)修饰变量—-&gt;常量<br>      变量必须初始化，变量的值不允许修改。<br>       final变量都必须显示初始化，<br>         a) 修饰静态变量，只能在定义变量时进行初始化；<br>         b) 修饰实例变量，可以在定义变量时进行初始化，<br>         或者在构造方法中进行初始化；<br>  2)修饰方法<br>      该方法不能够被重写<br>      final 加密(){} 不允许被重写<br>      final 解密(){} 不允许被重写<br>  3)修饰类<br>      该类不能够被继承<br>         String类就是final修饰的类</p>
+<p>第五章：面向对象编程</p>
+<p>\1. 实现多态需要注意什么？</p>
+<p>同一领域(继承同一个类或者实现同一个接口)的不同的对象调用的相同的方法表现不同</p>
+<p>   完成多态需要满足两个条件：</p>
+<p>​     1)父类的引用指向子类的对象</p>
+<p>​     2)子类需要重写父类的方法</p>
+<p>\2. instanceof的关键字的作用</p>
+<p>  instanceof判断该对象是否是该类的实例或者该类的子类的实例</p>
+<p>​     转换规则：被转换的实际对象一定是转换后类型的自身或子类</p>
+<p>\3. 方法重载和方法重写的区别</p>
+<p>重写</p>
+<p>  a)重写方法必须发生在子父类中</p>
+<p>  b)方法的名字必须相同</p>
+<p>  c)参数列表必须相同</p>
+<p>  d)返回值类型必须相同</p>
+<p>  e)可见性可以变大</p>
+<p>​    public &gt; protected &gt;private</p>
+<p>  f)异常不能抛大</p>
+<p>​    Exception&gt;NullPointException</p>
+<p>重载</p>
+<p>  a)方法的重载必须在本类</p>
+<p>  b)方法名字必须相同</p>
+<p>  c)参数列表必须不同</p>
+<p>​       参数的个数不同||</p>
+<p>​       参数的数据类型不同||</p>
+<p>​       参数的顺序不同</p>
+<p>  d)返回值可以不同</p>
+<p>  e)抛出异常可以不同</p>
+<p>  f)访问的修饰符可以不同</p>
+<p>二）扩展实验：</p>
+<p>1.super的作用？</p>
+<p>  a)super用在实例变量上面，很少用</p>
+<p>​    指定父类的实例变量 super.name</p>
+<p>  b)super用在方法中</p>
+<p>​    指定调用父类的方法</p>
+<p>  c)super用在构造器上</p>
+<p>​    调用父类构造器</p>
+<p>​    super(参数列表);</p>
+<p>2.数据类型转换？</p>
+<p>   引用数据类型的转换</p>
+<p>   a)隐式的数据类型转换</p>
+<p>​     子类对象给父类对象做隐式转换</p>
+<p>​     People p1=new Student();</p>
+<p>   b)强制的数据类型转换</p>
+<p>​     父类对象给子类对象做显示转换</p>
+<p>​     Student s1=(Student)p1;</p>
+<p>​     前提必须是能够强转在代码中测试</p>
+<p>​     Teacher t1=(Teacher)p1;//error,强制转换异常</p>
+<p>3.管理研发团队的信息</p>
+<p>class Address{</p>
+<p>​    private String country;</p>
+<p>​    private String city;</p>
+<p>​    private String street;</p>
+<p>}</p>
+<p>class Team{</p>
+<p>​    //学生团队，存放学生对象</p>
+<p>​    private Student[] team;</p>
+<p>​    //研发团队在什么地方</p>
+<p>​    private Address address;</p>
+<p>​    //向团队中添加学生</p>
+<p>​    public void addStudent(Student stu){}</p>
+<p>​    //从团队中删除学生</p>
+<p>​    public void removeStudent(Student stu){}</p>
+<p>​    //从团队中找学生的索引</p>
+<p>​    public int findStudent(Student stu){}</p>
+<p>​    //显示团队中学生的信息</p>
+<p>​    public void display(){}</p>
+<p>}</p>
+<p>\4. 编程：完成exercise文件中的编程作业</p>
+<p> 第六章：高级语言特性</p>
+<p>一）基础实验：</p>
+<p>1)static变量和实例变量的区别?</p>
+<p>​    i)static变量对于每个类而言在内存中只有一个，能被类的所有实例所共享；</p>
+<p>​                实例变量对于每个类的每个实例都有一份，它们之间互不影响；</p>
+<p>​         ii)Java虚拟机在加载类的过程中为static变量分配内存，</p>
+<p>​                 实例变量在加载完类后创建对象时分配内存；</p>
+<p>​         iii)static变量存在方法区，实例变量存在堆区；</p>
+<p>​         v)static变量可以直接通过类名访问，</p>
+<p>​       实例变量通过引用类型变量访问；</p>
+<p>2)编写一个代码计算该类被创建了多少次</p>
+<p>定义一个static int变量每次走类就会相加</p>
+<p>二）作业：</p>
+<p>1.编程</p>
+<p>readme1.txt的作业里面一般都是面试题。能完成就完成</p>
+<p>三)读程序</p>
+<p>1)下面代码输出的结果是：</p>
+<p>public class Test1 {</p>
+<p>​    public static void changeStr(String str){</p>
+<p>​        str=”welcome”;</p>
+<p>​    //System.out.println(str+”111”);</p>
+<p>​    }</p>
+<p>​    public static void main(String[] args) {</p>
+<p>​        String str=”1234”;</p>
+<p>​        changeStr(str);</p>
+<p>​        System.out.println(str);</p>
+<p>​    }</p>
+<p>}</p>
+<p> 1234</p>
+<p>2)下面代码的结果是?（A）</p>
+<p>A. ABDCBDCB</p>
+<p>B. ABCDABCD</p>
+<p>C. Compilation fails.</p>
+<p>D. An exception is thrown at runtime.</p>
+<p>publicclass Test2 {</p>
+<p>​    static boolean foo(char c) {</p>
+<p>​       System.out.print(c);</p>
+<p>​       return true;</p>
+<p>​    }</p>
+<p>​    public static void main(String[] argv) {</p>
+<p>​       int i = 0;</p>
+<p>​       for (foo(‘A’); foo(‘B’) &amp;&amp; (i &lt; 2); foo(‘C’)) {</p>
+<p>​           i++;</p>
+<p>​           foo(‘D’);</p>
+<p>​       }</p>
+<p>​    }</p>
+<p>}</p>
+<p>3)下面哪两个方法满足重写A类方法（A）</p>
+<p>class A {</p>
+<p>protected int method1(int a, int b) { return 0; }</p>
+<p>}</p>
+<p>A. public int method1(int a, int b) { return 0; }</p>
+<p>B. private int method1(int a, int b) { return 0; }</p>
+<p>C. private int method1(int a, long b) { return 0; }</p>
+<p>D. public short method1(int a, int b) { return 0; }</p>
+<p>E. static protected int method1(int a, int b) { return 0; }</p>
+<p>package com.briup.ch17;<br>public class Student extends Person<br>{<br>  private int score;//扩展的属性<br>  public Student(){<br>     this(0);<br>  }<br>  public Student(int score){<br>   setScore(score);<br>  }<br>  public Student(String name,String gender,int age,int score){<br>    super(name,gender,age);<br>    setScore(score);<br>    //this(score);<br>  }</p>
+<p>  public void setScore(int score){<br>     if(score<0 ||="" score="">150)<br>         this.score=0;<br>     else<br>         this.score=score;<br>  }<br>  public int getScore(){<br>    return score;<br>  }<br>  public void display(){<br>    System.out.println(“name:”+getName());<br>    System.out.println(“gender:”+getGender());<br>    System.out.println(“age:”+getAge());<br>    System.out.println(“score:”+score);<br>  }<br>}</0></p>
+<p>package com.briup.ch17;<br>public class Person<br>{<br>    private String name;<br>    private String gender;<br>    private int age;<br>    public Person(){</p>
+<pre><code>}
+public Person(String name,String gender,int age){
+    setName(name);
+    setGender(gender);
+    setAge(age);
+}
+public void setName(String name){
+   if(name==null) 
+       this.name=&quot;没有名字&quot;;
+   else
+       this.name=name;
+}
+public String getName(){
+  return name;
+}
+public void setGender(String gender){
+   this.gender=gender;
+}
+public String getGender(){
+   return gender;
+}
+public void setAge(int age){
+  if(age&lt;0 || age&gt;120) 
+      this.age=0;
+  else
+      this.age=age;
+
+}
+public int getAge(){
+ return age;
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch17;<br>public interface InterFaceTest<br>{<br>     int a=0;<br>     public static final int b=10;<br>     /*public InterFaceTest(){//不能有构造器</p>
+<pre><code>}*/
+public  void add();
+public static void query(){
+
+}
+</code></pre><p>}<br>interface Aa<br>{<br>}<br>interface Bb extends Aa,InterFaceTest<br>{<br>}<br>class Cc implements Bb,Aa<br>{<br>public  void add(){}<br>}</p>
+<p>package com.briup.ch17;<br>public class FinalTest<br>{<br>    private final int a;<br>    static{</p>
+<pre><code>}
+public FinalTest(){
+    a=100;
+
+    System.out.println(a);
+}
+public  void add(){
+   final int b;
+   //System.out.println(b);
+}
+public static void main(String... args){
+new FinalTest();
+}
+</code></pre><p>}<br>final class Aa<br>{<br>    public  void add(){</p>
+<pre><code>}
+</code></pre><p>}<br>class Bb extends Aa<br>{<br>    @Override<br>    public void add(){</p>
+<pre><code>}
+</code></pre><p>}</p>
+<p>package com.briup.ch17;<br>public abstract class Comparator<br>{<br>    /<em><br>      返回值=0 o1==o2<br>      返回值&gt;0 o1&gt;o2<br>      返回值&lt;0 o1&lt;o2
+    </em>/<br>    public abstract int compare(Object o1,Object o2);<br>}<br>//年龄比较器<br>class AgeComparator extends Comparator<br>{<br>    public int compare(Object o1,Object o2){<br>        Student s1=(Student)o1;<br>        Student s2=(Student)o2;<br>       return s1.getAge()-s2.getAge();</p>
+<pre><code>}
+</code></pre><p>}<br>//姓名比较器<br>class NameComparator extends Comparator<br>{<br>    public int compare(Object o1,Object o2){<br>        Student s1=(Student)o1;<br>        Student s2=(Student)o2;<br>       return s1.getName().length()-s2.getName().length();</p>
+<pre><code>}
+</code></pre><p>}</p>
+<p>package com.briup.ch17;<br>//抽象类<br>public abstract class AbstractTest<br>{<br>    private int a;<br>    public AbstractTest(){<br>    }<br>    //抽象方法<br>    public abstract void add();<br>    //如果不是抽象方法必须去实现<br>    public void delete(){</p>
+<pre><code>}
+public static void main(String... args){
+      //AbstractTest at=new AbstractTest();
+
+}
+</code></pre><p>}<br>/<em>abstract class Aa extends AbstractTest<br>{<br>    /</em>public void add(){</p>
+<pre><code>}
+public void delete(){}
+public abstract void query();
+</code></pre><p>}<br>class Bb extends Aa<br>{<br>   public void query(){<br>   }<br>   public void add(){</p>
+<p>   }<br>}*/</p>
+<p>使用接口和抽象类</p>
+<p>练习目标：建立一个动物的层次结构，以抽象类Animal为根，几个动物类将实现接口Pet。类结构如下：</p>
+<p>Animal–abstract    Pet&lt;<interface>&gt;</interface></p>
+<p>#legs:int        +getName()：String</p>
+<p>#Animal(legs:int)    +setName(name:String)</p>
+<p>+walk()                +play()</p>
+<p>+eat()–abstract    </p>
+<p>Cat            Spider</p>
+<p>-name:String        +Spider()         </p>
+<p>+Cat(name:String)        +eat()</p>
+<p>+Cat()                 </p>
+<p>+getName()：String</p>
+<p>+setName(name:String)</p>
+<p>+play()</p>
+<p>+eat()</p>
+<p>Fish</p>
+<p>-name:String</p>
+<p>+Fish()                 </p>
+<p>+getName()：String</p>
+<p>+setName(name:String)</p>
+<p>+play()</p>
+<p>+walk()</p>
+<p>+eat()</p>
+<p>任务1：创建Animal类，它是所有动物类的抽象超类</p>
+<p>public abstract class Animal{</p>
+<p>public int legs;</p>
+<p>public Animal(int legs){</p>
+<p>this.legs=legs;</p>
+<p>}</p>
+<p>protected void walk(){</p>
+<p>System.out.println(“This animal walks on “ + legs + “ legs.”);</p>
+<p>}</p>
+<p>protected abstract void eat();</p>
+<p>任务2：创建Spider类，继承Animal类</p>
+<p>public class Spider extends Animal{</p>
+<p>public Spider(){</p>
+<p>super(8);</p>
+<p>}</p>
+<p>public void eat(){</p>
+<p>System.out.println(“Spiders catch flies in their webs to eat.”);</p>
+<p>}</p>
+<p>}</p>
+<p>任务3：创建Pet接口</p>
+<p>public interface Pet{</p>
+<p>public abstract String getName();</p>
+<p>void setName(String name);</p>
+<p>public void play();</p>
+<p>}</p>
+<p>任务4：创建Cat类，继承Animal类并实现Pet接口</p>
+<p>public class Cat extends Animal implements Pet{</p>
+<p>private String name;</p>
+<p>public Cat(String name) {</p>
+<p>super(4);</p>
+<p>this.name = name;</p>
+<p>}</p>
+<p>public Cat() {</p>
+<p>this(“”);</p>
+<p>}</p>
+<p>public String getName(){</p>
+<p>return name;</p>
+<p>}</p>
+<p>public void setName(String name){</p>
+<p>this.name=name;</p>
+<p>}</p>
+<p>public void play(){</p>
+<p>System.out.println(name + “ likes to play with string.”);</p>
+<p>}</p>
+<p>public void eat(){</p>
+<p>System.out.println(“Cats like to eat spiders and mice.”);</p>
+<p>}</p>
+<p>} </p>
+<p>任务5：创建Fish类，继承Animal类并实现Pet接口</p>
+<p>public class Fish extends Animal implements Pet{</p>
+<p>private String name;</p>
+<p>public Fish(){</p>
+<p>super(0);</p>
+<p>}</p>
+<p>public String getName(){</p>
+<p>return name;</p>
+<p>}</p>
+<p>public void setName(String name){</p>
+<p>this.name=name;</p>
+<p>}</p>
+<p>public void play(){</p>
+<p>System.out.println(“Fish swim in their tanks all day.”);</p>
+<p>}</p>
+<p>public void walk(){</p>
+<p>super.walk();</p>
+<p>System.out.println(“Fish, of course, can’t walk; they swim.”);</p>
+<p>}</p>
+<p>public void eat(){</p>
+<p>System.out.println(“Fish eat pond scum.”);</p>
+<p>}</p>
+<p>}</p>
+<p>任务6：使用TestAnimals类测试代码</p>
 
       
     </div>
@@ -669,7 +968,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -696,7 +995,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

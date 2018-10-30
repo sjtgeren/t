@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="二维数组（随机点名系统，学生的位置x,y）   存放一维数组的数组   int[][] a = new int[2][3];   a[0].length   a.length    int[][]   int[][][]a)管理学生寝室   管理每层楼学生的信息   MultiArray.javab)输出方正矩形：  0 2 2 2 2 2  1 0 2 2 2 2  1 1 0 2 2 2  1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T11:21:24.087Z">
+<meta property="og:updated_time" content="2018-10-30T11:49:51.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第十一天笔记">
 <meta name="twitter:description" content="二维数组（随机点名系统，学生的位置x,y）   存放一维数组的数组   int[][] a = new int[2][3];   a[0].length   a.length    int[][]   int[][][]a)管理学生寝室   管理每层楼学生的信息   MultiArray.javab)输出方正矩形：  0 2 2 2 2 2  1 0 2 2 2 2  1 1 0 2 2 2  1">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-18T19:21:24+08:00">
-                2018-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:49:51+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  362字
+                  1,216字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  7分钟
                 </span>
               
             </div>
@@ -476,6 +476,31 @@
 <p>如果是a=b则，b[1]=2（b1也随着改变）<br>如果是System.arraycopy(a,0,b,0,5)则，b[1]=数组b[1]的初始值，不会改变</p>
 <p>4)使用数组模拟队,先进先出<br>   1/3的需求分析<br>   1/3的coding<br>   1/3的测试<br> class Queue(){<br>      //入队<br>      void add(int value){}<br>      //出队<br>      int remove(){}<br>      //当前队中元素个数<br>      int size()<br>      //输出类型<br>      void print()<br> }</p>
 <p> class Student{}是以属性为主的类<br> class Queue{}是以方法为主的类</p>
+<p>package com.briup.ch11;<br>import java.util.*;<br>public class Array<br>{<br>    public static void main(String… args){<br>    int[] array=new int[]{10,3,198,98,23};<br>     Arrays.sort(array);<br>     for(int i=0;i&lt;array.length;i++){<br>     System.out.print(array[i]+” “);<br>     }<br>    }<br>}</p>
+<p>package com.briup.ch11;<br>public class ArrayTest<br>{<br>    public static void main(String… args){<br>       //printFang();<br>       printYang();<br>    }<br>    //输出二维数组<br>    public static void out(int[][] array){<br>     for(int i=0;i&lt;array.length;i++){<br>      for(int j=0;j&lt;array[i].length;j++){<br>      System.out.print(array[i][j]+”\t”);<br>      }<br>         System.out.println();<br>     }<br>    }<br>    /<em><br>输出矩阵<br>0 2 2 2 2 2<br>1 0 2 2 2 2<br>1 1 0 2 2 2<br>1 1 1 0 2 2<br>1 1 1 1 0 2<br>1 1 1 1 1 0
+    </em>/<br>    public static void printFang(){<br>      int[][] array=new int[6][6];<br>      for(int i=0;i&lt;array.length;i++){<br>      for(int j=0;j&lt;array[i].length;j++){<br>         if(i==j) array[i][j]=0;<br>         else if(i&gt;j) array[i][j]=1;<br>         else array[i][j]=2;<br>      }<br>      }<br>      out(array);//调用输出二维数组方法<br>    }<br>    /<em><br>    杨辉三角<br>1<br>1 1<br>1 2 1<br>1 3 3 1<br>1 4 6 4 1
+    </em>/<br>    public static void printYang(){<br>       int n=10;//总行数<br>       int[][] array=new int[n][];<br>       for(int i=0;i&lt;array.length;i++){<br>         array[i]=new int[i+1];//创建列数对象<br>        for(int j=0;j&lt;=i;j++){<br>            if(i==0 || j==0 || i==j)<br>                array[i][j]=1;<br>            else<br>                array[i][j]=array[i-1][j-1]<br>                +array[i-1][j];<br>        }<br>       }<br>      out(array);<br>    }<br>}</p>
+<p>package com.briup.ch11;<br>public class Bubble<br>{<br>    public static void main(String… args){<br>    int[] attr={2,5,-5,98,198,23};<br>    System.out.println(“排序前:”);<br>    for(int i=0;i&lt;attr.length;i++){<br>    System.out.print(attr[i]+” “);<br>    }<br>    System.out.println();<br>    //外层循环次数<br>    for(int i=0;i&lt;attr.length-1;i++){<br>     for(int j=0;j&lt;attr.length-1-i;j++){<br>       if(attr[j]&gt;attr[j+1]){<br>          int temp=attr[j];//临时存放最大值<br>          attr[j]=attr[j+1];<br>          attr[j+1]=temp;<br>       }<br>     }<br>    }<br>System.out.println(“排序后:”);<br>  for(int i=0;i&lt;attr.length;i++){<br>    System.out.print(attr[i]+” “);<br>    }<br>    }<br>}</p>
+<p>package com.briup.ch11;<br>public class CopyArrayTest<br>{<br>    public static void main(String… args){<br>       //int[] array=new int[5];<br>      // array[5]=6;<br>      //array.length=8;//error<br>      int[] array={1,3,46,57,2};<br>      int[] newArray=new int[10];<br>      System.out.println(“扩容前数组长度:”);<br>      System.out.println(array.length);<br>      //扩容<br>      System.arraycopy(array,0,newArray,0,array.length);<br>      array=newArray;//赋值<br>     System.out.println(“扩容后数组长度:”);<br>      System.out.println(array.length);</p>
+<pre><code>}
+</code></pre><p>}</p>
+<p>package com.briup.ch11;<br>public class Queue<br>{<br>    private int[] array;//队<br>    private int length;//队的总长度<br>    private int size;//队的当前长度<br>   public Queue(){<br>     array=new int[5];<br>     this.length=5;<br>   }<br>   public Queue(int length){<br>   array=new int[length];<br>   this.length=length;<br>   }<br>   //判断数组越界<br>   public void check(){<br>     if(size&gt;=length){//扩容<br>       int[] newArray=new int[10+length];<br>       System.arraycopy(array,0,newArray,0,length);<br>       array=newArray;<br>       length+=10;<br>     }<br>   }<br>    //入队<br>     public void add(int num){<br>         check();<br>     array[size]=num;<br>     size++;<br>     }</p>
+<pre><code>//出队
+public int remove(){
+ int num=array[0];//删除的内容
+ for(int i=0;i&lt;size-1;i++){//代表移动几次
+    array[i]=array[i+1];//往前移动数据
+ }
+array[size-1]=0;//将最后一个数据设置默认值
+size--;
+ return num;
+}
+</code></pre><p>   //队的当前长度<br>   public int getSize(){<br>   return size;<br>   }<br>   //打印队的详细信息<br>   public void print(){<br>   for(int i=0;i&lt;size;i++){<br>   System.out.print(array[i]+” “);<br>   }<br>   }<br>}</p>
+<p>package com.briup.ch11;<br>public class QueueTest<br>{<br>    public static void main(String… args){<br>        Queue queue=new Queue();//初始化对象<br>        queue.add(10);<br>        queue.add(20);<br>        queue.add(30);<br>        queue.add(40);<br>        queue.add(50);<br>        queue.add(60);<br>         System.out.println(queue.getSize());<br>         queue.print();</p>
+<pre><code>}
+</code></pre><p>}</p>
+<p>package com.briup.ch11;<br>public class Selection<br>{<br>    public static void main(String… args){<br>     int[] attr={2,5,-5,198,98,23};<br>     System.out.println(“排序前:”);<br>     for(int i=0;i&lt;attr.length;i++){<br>     System.out.print(attr[i]+” “);<br>     }<br>   System.out.println();<br>    for(int i=0;i&lt;attr.length-1;i++){<br>        int position=i;<br>     for(int j=i+1;j&lt;attr.length;j++){<br>        if(attr[position]&gt;attr[j]){<br>           position=j;<br>        }<br>     }<br>     int temp=attr[i];<br>     attr[i]=attr[position];<br>     attr[position]=temp;<br>    }<br>   System.out.println(“排序后:”);<br>  for(int i=0;i&lt;attr.length;i++){<br>    System.out.print(attr[i]+” “);<br>    }<br>    }<br>}</p>
+<p>package com.briup.ch11;<br>public class Test<br>{<br>    public static void main(String… args){<br>       System.out.println(add(4,5));<br>       System.out.println(add(4,5,6));<br>    }<br>    public static int add(int… array){<br>        int sum=0;<br>       for(int i=0;i&lt;array.length;i++){<br>           sum+=array[i];<br>       }<br>       return 0;<br>    }<br>}</p>
 
       
     </div>
@@ -675,7 +700,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -702,7 +727,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="五：线程的状态 a)新建状态：线程对象已经创建，还没有在其上调用start()方法。  b)就绪状态： 线程已经准备好了，等待CPU的调度，              当线程有资格运行，但调度程序还没有把它选定              为运行线程时线程所处的状态。当start()方法调用时，          线程首先进入就绪状态。在线程运行之后或者从阻塞、          等待或睡眠状态回来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-29T08:51:40.208Z">
+<meta property="og:updated_time" content="2018-10-30T12:18:36.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十八天笔记">
 <meta name="twitter:description" content="五：线程的状态 a)新建状态：线程对象已经创建，还没有在其上调用start()方法。  b)就绪状态： 线程已经准备好了，等待CPU的调度，              当线程有资格运行，但调度程序还没有把它选定              为运行线程时线程所处的状态。当start()方法调用时，          线程首先进入就绪状态。在线程运行之后或者从阻塞、          等待或睡眠状态回来">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-29T16:51:40+08:00">
-                2018-10-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:18:36+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  792字
+                  1,845字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  8分钟
                 </span>
               
             </div>
@@ -475,6 +475,133 @@
 <p>加同步锁，加在共享对象上。<br>每一个对象都有唯一的一把锁。<br>lock对象锁—-&gt;执行代码——&gt;unlock对象锁<br>多个线程只能是谁抢到了对象锁，谁就可以执行。<br>并发访问的线程加上同步锁之后就称为线程的互斥。</p>
 <p>synchronized(共享区){临界区}<br>共享区：多线程同时操作同一个对象<br>临界区：多线程对共享区进行操作的代码区<br>该对象就是的类就是线程安全的类—效率低。<br>将所有影响的方法都定义成线程安全的方法就变成了线程安全的类。</p>
 <p>synchronized可以放在方法上，就是一个同步方法。</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberThread extends Thread{<br>    static int i=1;<br> @Override<br> public void run(){<br>    //int i=1;<br>    for(;i&lt;=100;i++){<br>        System.out.println(getName()+”:”+i);<br>        try {<br>            sleep(1000);//睡眠 毫秒<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br> }<br> public static void main(String[] args){<br>     Thread t1=new NumberThread();//创建线程对象<br>     Thread t2=new NumberThread();<br>     t1.start();//启动线程 不能直接通过对象调用run方法<br>     t2.start();<br> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberRunnable implements Runnable{<br>      int i=1;<br> @Override<br> public void run(){</p>
+<pre><code>for(;i&lt;=100;i++){
+    //Thread.currentThread().getName()获取当前正在执行的线程名称
+    System.out.println(
+            Thread.currentThread().getName()+&quot;:&quot;+i);
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
+</code></pre><p> }<br> public static void main(String… args){<br>     /<em>Runnable r=new NumberRunnable();<br>     Thread t1=new Thread(r);<br>     Thread t2=new Thread(r);</em>/<br>     //第二种<br>     Runnable r1=new NumberRunnable();<br>     Thread t1=new Thread(r1);<br>     Runnable r2=new NumberRunnable();<br>     Thread t2=new Thread(r2);<br>     t1.start();<br>     t2.start();<br> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class InterruptTest extends Thread{<br> @Override<br> public void run(){<br>    System.out.println(getName()+”will sleep”);<br>    try {<br>        sleep(10*1000);<br>    } catch (InterruptedException e) {<br>        System.out.println(getName()+” interrupted”);<br>    }<br>    System.out.println(getName()+” over…”);</p>
+<p>}<br> public static void main(String… args){<br>     Thread t1=new InterruptTest();<br>     Thread t2=new InterruptTest();<br>     t2.start();<br>     t1.start();<br>     try {<br>        Thread.sleep(1000);//让主线程睡眠，先执行子线程<br>        t1.interrupt();//中断t1线程<br>        System.out.println(t1.isInterrupted());<br>        System.out.println(t2.isInterrupted());<br>        Thread.interrupted();//清空中断操作记录<br>        System.out.println(t1.isInterrupted());<br>        System.out.println(t2.isInterrupted());<br>    } catch (InterruptedException e) {<br>        // TODO Auto-generated catch block<br>        e.printStackTrace();<br>    }//</p>
+<p> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class GuiTuTest extends Thread{<br>    private static boolean flag=false;<br>    public GuiTuTest(String name){<br>        super(name);<br>    }<br>    @Override<br>    public void run(){<br>            int sum=0;//走的长度<br>            while(sum&lt;=100){<br>                if(flag)<br>                    return;<br>                int race=(int)(Math.random()*10+1);<br>                sum+=race;<br>                System.out.println(getName()+” running “+sum);<br>                try {<br>                    sleep(1000);<br>                } catch (InterruptedException e) {<br>                    // TODO Auto-generated catch block<br>                    e.printStackTrace();<br>                }<br>            }<br>            flag=true;<br>    }<br>public static void main(String… args){<br>    System.out.println(“比赛开始…”);<br>    Thread rabbit=new GuiTuTest(“兔子”);<br>    Thread wugui=new GuiTuTest(“乌龟”);<br>    rabbit.start();<br>    wugui.start();</p>
+<pre><code>try {
+    //main线程等待rabbit和wugui线程执行
+    rabbit.join();
+    wugui.join();
+} catch (InterruptedException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+System.out.println(&quot;比赛结束...&quot;);
+System.out.println(&quot;兔子:&quot;+rabbit.isAlive());
+</code></pre><p>}<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class AccountTest extends Thread{<br>private Account account;<br>public AccountTest(String name,Account account){<br>    super(name);//起个线程名称<br>    this.account=account;<br>}<br>@Override<br>public void run(){<br>    //double amt=account.withdeaw(1000);<br>    double amt=account.deposit(1000);<br>    System.out.println(getName()+” from “<br>    +account.getAccountNo()+” deposit “<br>            +amt+”,balance=”+account.getBalance());<br>}<br>public static void main(String… args){<br>    //创建一个账户对象<br>    Account account=new Account(“1452361”,1000);<br>    Thread girl=new AccountTest(“girl”,account);<br>    Thread boy=new AccountTest(“boy”,account);<br>    girl.start();<br>    boy.start();<br>}<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class Account {<br>private String accountNo;//账户<br>private double balance;<br>public Account(String accountNo,double balance){<br>    this.accountNo=accountNo;<br>    this.balance=balance;<br>}<br>public String getAccountNo(){<br>    return accountNo;<br>}<br>public double getBalance(){<br>    return balance;<br>}<br>//存钱<br>public double deposit(double amt){<br>    if(amt&lt;=0) return 0.0;</p>
+<pre><code>synchronized(this){
+    double temp=balance;
+    temp+=amt;
+}
+
+try {
+    Thread.sleep(1000);
+} catch (InterruptedException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+balance=temp;
+return amt;    
+</code></pre><p>}<br>//取钱<br>public double withdeaw(double amt){<br>    if(amt&lt;=0 || amt&gt;balance) return 0.0;<br>    double temp=balance;<br>    temp-=amt;<br>    try {<br>        Thread.sleep(1000);<br>    } catch (InterruptedException e) {<br>        // TODO Auto-generated catch block<br>        e.printStackTrace();<br>    }<br>    balance=temp;<br>    return amt;<br>}<br>}</p>
+<p>​    1．线程由以下哪些部分组成？（选三项）ABC</p>
+<p>​    A．虚拟的CPU</p>
+<p>​    B．CPu执行的代码</p>
+<p>​    C．支持代码工作的数据</p>
+<p>​    D．进程</p>
+<p>​    </p>
+<p>​    2．创建线程的时候必须实现哪项接口?A</p>
+<p>​    A．  Runnable</p>
+<p>​    B．  Thread</p>
+<p>​    C．  Run</p>
+<p>​    D．  Start</p>
+<p>​    </p>
+<p>​    3．启动一个线程的方法是哪项？C</p>
+<p>​    A． join()</p>
+<p>​    B.  run f)</p>
+<p>​    C．start()</p>
+<p>​    D．sleep()</p>
+<p>​    </p>
+<p>​    4．当一个处于阻塞状态的线程解除阻塞后，它将回到哪个状态？D</p>
+<p>​    A.运行中状态</p>
+<p>​    B．结束状态</p>
+<p>​    C．新建状态</p>
+<p>​    D．可运行状态</p>
+<p>​    </p>
+<p>​     5．可以通过继承哪个类来创建线程？A</p>
+<p>​    A. Thread</p>
+<p>​    B．Runnable</p>
+<p>​    C．tart</p>
+<p>​    D．run </p>
+<p>一：实现龟兔赛跑</p>
+<p>提示：可以采用Math.random()取得0~1之间的随机数模拟比赛进程，</p>
+<p>如总距离为100米，在随机数0~0.3之间代表兔子跑，每次跑2米，</p>
+<p>在0.3~1之间代表乌龟跑，每次跑1米，先跑完100米者为胜利者</p>
+<p>Race类：产生RabbitAndTurtle的两个实例，分别代表兔子和乌龟</p>
+<p>RabbitAndTurtle类：继承Thread类，实现赛跑的逻辑</p>
+<p>public class GuiTuPlay extends Thread{</p>
+<p>private String name;</p>
+<p>private double m;</p>
+<p>private static int a;//乌龟</p>
+<p>private static int b;//兔子</p>
+<p>private static boolean flag;</p>
+<p>public GuiTuPlay(String name) {</p>
+<p>​    this.name = name;</p>
+<p>​    flag=true;</p>
+<p>}</p>
+<p>@Override</p>
+<p>​    public void run() {</p>
+<p>​    while (flag==true) {</p>
+<p>​        m=Math.random();</p>
+<p>​        if (m&gt;=0.0&amp;&amp;m&lt;=0.3) {</p>
+<p>​            b+=2;</p>
+<p>​            System.out.println(“兔子走了”+b);</p>
+<p>​            if (b==100) {</p>
+<p>​                System.out.println(“兔子赢了”);</p>
+<p>​                flag=false;</p>
+<p>​            }</p>
+<p>​        }else if (m&gt;0.3&amp;&amp;m&lt;=1.0) {</p>
+<p>​            a+=1;</p>
+<p>​            System.out.println(“乌龟走了”+a);</p>
+<p>​            if (a==100) {</p>
+<p>​                flag=false;</p>
+<p>​                System.out.println(“乌龟赢了”);</p>
+<p>​                </p>
+<p>​            }</p>
+<p>​        }</p>
+<p>​    }</p>
+<p>​    </p>
+<p>​    }</p>
+<p>public static void main(String[] args) throws InterruptedException {</p>
+<p>​    Thread tuzi=new GuiTuPlay(“兔子”);</p>
+<p>​    Thread wugui=new GuiTuPlay(“乌龟”);</p>
+<p>​    tuzi.start();</p>
+<p>​    tuzi.join();</p>
+<p>​    wugui.start();</p>
+<p>}</p>
+<p>}</p>
 
       
     </div>
@@ -674,7 +801,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -701,7 +828,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

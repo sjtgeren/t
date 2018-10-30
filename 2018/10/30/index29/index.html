@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-30T07:29:31.067Z">
+<meta property="og:updated_time" content="2018-10-30T12:18:19.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十九天笔记">
 <meta name="twitter:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
@@ -373,7 +373,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T15:29:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:18:19+08:00">
                 2018-10-30
               </time>
             
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  770字
+                  1,540字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  7分钟
                 </span>
               
             </div>
@@ -471,6 +471,61 @@
 <p>二:线程的通信—&gt;线程同步(操作的也是同一个对象)<br>线程互斥谁先抢到对象锁就谁先执行(如抛绣球)。<br>线程同步会控制线程执行的先后顺序。<br>        线程同步线程会有依赖关系。<br>一个boy存钱，一个girl取钱。必须先存钱后取钱。就是线程同步。<br>重复(存钱—-&gt;取钱)<br>存钱之后通知可以取钱。<br>取钱之后通知可以存钱。<br>并且是先存后取<br>   男:标志位flag = false;存钱 flag=true;<br>   女:标志位flag = true;取钱 flag=false;<br>模拟生成者和消费者—针对产品<br> 生成者:从1到100累加的和作为产品。<br> 消费者:打印该产品。<br>线程通信的步骤：<br>1)找到共有对象。<br>2)wait(),notify(),notifyAll()—Object类中的方法。<br>    需要对同一个资源等待，唤醒才有效。<br>    是针对对象进行等待和通知。这些方法一定要放在<br>    synchronized关键字中，用来保护共有资源。<br> 生产者生成产品之后通知消费者–notify<br> 消费者等待生产者生产产品—wait<br>3)保证wait()执行在notifyAll()方法的前面.使用标志变量。<br> notifyAll()之前先判断有没有线程在等待。<br> 如果有就通知，没有就小睡一下只有有等待线程出现。</p>
 <p>sleep():不会释放对象锁。<br>wait()：让当前线程进入等待状态，会释放对象锁。<br>notify()：通知等待中的某个线程进入到就绪状态。会释放对象锁。<br>notifyAll():通知等待中的所有线程进入到就绪状态。会释放对象锁。<br>可以通过公交车和人和师傅来说明</p>
 <p>三：线程的死锁<br> 多个线程同时操作多个对象很容易产生死锁。<br> 解决方式：给多个对象加对象锁的时候。<br>           将加锁的顺序保持一致，就可以避免死锁。<br>四：Thread类中其他方法<br>yield():当前线程让出CPU，给比自己优先级别还高的线程。<br>    如果当前没有比自己优先级还高的线程就没有效果。<br>setPrioirity(int)设置线程的优先级.整数越大优先级越高。<br>         取值范围在1到10.<br>         但是设置优先级高就不一定会先执行，<br>         还是会看CPU的调度。</p>
+<p>package com.briup.thread;</p>
+<p>public class Result {<br>private int value;<br>private boolean wait=false;<br>public int getValue(){<br>    synchronized(this){<br>        try {<br>            this.setWait(true);<br>            this.wait();//等待<br>            //wait具有阻塞功能<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br>    return value;<br>}<br>public void setValue(int value){<br>    this.value=value;<br>    while(!this.isWait()){<br>        try {<br>            Thread.sleep(1000);<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br>    //通知消费者来消费产品<br>            synchronized(this){<br>                this.notifyAll();//通知所有等待的线程<br>            }<br>}<br>public boolean isWait(){<br>    return wait;<br>}<br>public void setWait(boolean wait){<br>    this.wait=wait;<br>}<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberThread extends Thread{<br>    static int i=1;<br> @Override<br> public void run(){<br>    //int i=1;<br>    for(;i&lt;=100;i++){<br>        System.out.println(getName()+”:”+i);<br>        try {<br>            sleep(1000);//睡眠 毫秒<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br> }<br> public static void main(String[] args){<br>     Thread t1=new NumberThread();//创建线程对象<br>     Thread t2=new NumberThread();<br>     t1.start();//启动线程 不能直接通过对象调用run方法<br>     t2.start();<br> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberRunnable implements Runnable{<br>      int i=1;<br> @Override<br> public void run(){</p>
+<pre><code>for(;i&lt;=100;i++){
+    //Thread.currentThread().getName()获取当前正在执行的线程名称
+    System.out.println(
+            Thread.currentThread().getName()+&quot;:&quot;+i);
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
+</code></pre><p> }<br> public static void main(String… args){<br>     /<em>Runnable r=new NumberRunnable();<br>     Thread t1=new Thread(r);<br>     Thread t2=new Thread(r);</em>/<br>     //第二种<br>     Runnable r1=new NumberRunnable();<br>     Thread t1=new Thread(r1);<br>     Runnable r2=new NumberRunnable();<br>     Thread t2=new Thread(r2);<br>     t1.start();<br>     t2.start();<br> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class InterruptTest extends Thread{<br> @Override<br> public void run(){<br>    System.out.println(getName()+”will sleep”);<br>    try {<br>        sleep(10*1000);<br>    } catch (InterruptedException e) {<br>        System.out.println(getName()+” interrupted”);<br>    }<br>    System.out.println(getName()+” over…”);</p>
+<p>}<br> public static void main(String… args){<br>     Thread t1=new InterruptTest();<br>     Thread t2=new InterruptTest();<br>     t2.start();<br>     t1.start();<br>     try {<br>        Thread.sleep(1000);//让主线程睡眠，先执行子线程<br>        t1.interrupt();//中断t1线程<br>        System.out.println(t1.isInterrupted());<br>        System.out.println(t2.isInterrupted());<br>        Thread.interrupted();//清空中断操作记录<br>        System.out.println(t1.isInterrupted());<br>        System.out.println(t2.isInterrupted());<br>    } catch (InterruptedException e) {<br>        // TODO Auto-generated catch block<br>        e.printStackTrace();<br>    }//</p>
+<p> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class GuiTuTest extends Thread{<br>    private static boolean flag=false;<br>    public GuiTuTest(String name){<br>        super(name);<br>    }<br>    @Override<br>    public void run(){<br>            int sum=0;//走的长度<br>            while(sum&lt;=100){<br>                if(flag)<br>                    return;<br>                int race=(int)(Math.random()*10+1);<br>                sum+=race;<br>                System.out.println(getName()+” running “+sum);<br>                try {<br>                    sleep(1000);<br>                } catch (InterruptedException e) {<br>                    // TODO Auto-generated catch block<br>                    e.printStackTrace();<br>                }<br>            }<br>            flag=true;<br>    }<br>public static void main(String… args){<br>    System.out.println(“比赛开始…”);<br>    Thread rabbit=new GuiTuTest(“兔子”);<br>    Thread wugui=new GuiTuTest(“乌龟”);<br>    rabbit.start();<br>    wugui.start();</p>
+<pre><code>try {
+    //main线程等待rabbit和wugui线程执行
+    rabbit.join();
+    wugui.join();
+} catch (InterruptedException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+System.out.println(&quot;比赛结束...&quot;);
+System.out.println(&quot;兔子:&quot;+rabbit.isAlive());
+</code></pre><p>}<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class AccountTest extends Thread{<br>private Account account;<br>public AccountTest(String name,Account account){<br>    super(name);//起个线程名称<br>    this.account=account;<br>}<br>@Override<br>public void run(){<br>    double amt=0.0;<br>    //double amt=account.withdeaw(1000);<br>    /<em>synchronized(account){<br>        //amt=account.deposit(1000);<br>        amt=account.withdeaw(1000);<br>    }</em>/<br>    //amt=account.deposit(1000);<br>    amt=account.withdeaw(1000);<br>    System.out.println(getName()+” from “<br>    +account.getAccountNo()+” deposit “<br>            +amt+”,balance=”+account.getBalance());<br>}<br>public static void main(String… args){<br>    //创建一个账户对象<br>    Account account=new Account(“1452361”,1000);<br>    Thread girl=new AccountTest(“girl”,account);<br>    Thread boy=new AccountTest(“boy”,account);</p>
+<pre><code>boy.start();
+girl.start();
+</code></pre><p>}<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class Account {<br>private String accountNo;//账户<br>private double balance;<br>public Account(String accountNo,double balance){<br>    this.accountNo=accountNo;<br>    this.balance=balance;<br>}<br>public String getAccountNo(){<br>    return accountNo;<br>}<br>public double getBalance(){<br>    return balance;<br>}<br>//存钱<br>public double deposit(double amt){<br>    if(amt&lt;=0) return 0.0;<br>    synchronized(this){<br>        double temp=balance;<br>        temp+=amt;<br>        try {<br>            Thread.sleep(1000);<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        balance=temp;<br>        return amt;<br>    }</p>
+<p>​<br>}<br>//取钱<br>public synchronized double withdeaw(double amt){</p>
+<pre><code>if(amt&lt;=0 || amt&gt;balance) return 0.0;
+double temp=balance;
+temp-=amt;
+try {
+    Thread.sleep(1000);
+} catch (InterruptedException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+}
+balance=temp;
+return amt;
+</code></pre><p>}<br>}</p>
 
       
     </div>
@@ -666,7 +721,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -693,7 +748,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

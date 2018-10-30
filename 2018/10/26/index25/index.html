@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="二. 反射 ：自描述或者自定义  平时我们照镜子的时候，在镜子后面会有自己的影子，其实java中的反射也是类似的，一个类或者对象通过反射可以获得自身的对象，该对象是一个java.lang.Class的对象(就像一个镜像文件)。一个对象或者类获得自身的Class对象的过程称为反射。java.lang.Class：是类镜像，镜像对象Class类镜像的作用可以获取该类和该对象的所有属性，方法和构造器，以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-26T01:52:48.478Z">
+<meta property="og:updated_time" content="2018-10-30T12:14:08.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十五天笔记">
 <meta name="twitter:description" content="二. 反射 ：自描述或者自定义  平时我们照镜子的时候，在镜子后面会有自己的影子，其实java中的反射也是类似的，一个类或者对象通过反射可以获得自身的对象，该对象是一个java.lang.Class的对象(就像一个镜像文件)。一个对象或者类获得自身的Class对象的过程称为反射。java.lang.Class：是类镜像，镜像对象Class类镜像的作用可以获取该类和该对象的所有属性，方法和构造器，以">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-26T09:52:48+08:00">
-                2018-10-26
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:14:08+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,260字
+                  1,828字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分钟
+                  8分钟
                 </span>
               
             </div>
@@ -472,6 +472,68 @@
 <p>反射用途的注意：<br>  1)反射可以让我们利用这个Class对象来获取和<br>修改私有的变量和方法，不通过共有的方法去<br>获得（原来我们例子都是通过一个public的方<br>法来设置和获取私有的变量），可以破坏数据<br>的封装性。<br>  2)反射机制通过在运行时探查字段和方法，<br>从而可以帮助写出通用性很好的程序，<br>这项能力对系统编程来说特别有用，<br>但它并不适合于应用编程。而且，反射是<br>脆弱的——编译不能帮助你发现编译错误，<br>任何错误在运行时被发现并且都会导致异常。<br>导致代码不安全。<br>异常<br>一：异常<br> 异常是改变程序正常执行流程的意外情况。<br> 异常的条件都是应用级别的异常。系统级别<br> 的异常程序员无法处理。<br>异常：是一个对象,Exception<br>class Exception{<br>    发生问题的主体(Object)<br>    对问题本身的有效描述(String)<br>}</p>
 <p>二：异常的结构<br>try{<br>   //可能出现异常的代码<br>    …<br>    int k= 10/0;<br>    …<br>    …<br>}catch(ExceptionType1 e){<br>….//针对ExceptionType1类型的异常处理<br>}catch(ExceptionType2 e){<br>…//针对ExceptionType2类型的异常处理<br>}<br>…..<br>}finally{<br>     //不管是否碰到异常，都要执行该代码，<br>     //收尾工作(关闭数据库，释放资源….)<br>}<br>…<br>catch中异常类型小异常放在上面<br>             大异常放在下面</p>
 <p>异常：是对象，java.lang.Exception<br>抛出异常：在try中业务逻辑代码出现异常情况，<br>          系统会自动产生异常对象，将该异<br>      常对象抛出给java运行时环境。<br>          这个过程称之为抛出异常。<br>捕获异常：java运行时环境接受到异常对象，<br>         会根据异常对象寻找相应的catch块。<br>     这个过程称之为捕获异常。<br>         如果找不到相应的catch块，<br>     将异常对象交给java运行<br>     时环境，JAVA运行时环境会直接中<br>     断应用程序，并且会打印异常栈的信息。<br>    异常栈的信息会知道在哪行代码出现了什么样的异常。<br>处理异常：异常处理的代码</p>
+<p>package com.briup.ch25;<br>public class Exception1<br>{<br>    //描述异常的详细信息<br>    public String message;<br>    //异常发生的原因<br>    public Throwable cause;<br>}</p>
+<p>package com.briup.ch25;<br>public class ExceptionTest<br>{<br>    public static void main(String… args){<br>    System.out.println(“start…”);<br>    try{//放的是正常运行方式<br>     String str=null;<br>    char c=str.charAt(0);<br>    System.out.println(c);<br>    int a=10/0;<br>    System.out.println(“a=”+a);</p>
+<pre><code>}catch(NullPointerException ex){
+ System.out.println(ex.getMessage());
+}
+catch(ArithmeticException e){
+ System.out.println(&quot;除数为0&quot;);
+ /*try{
+
+ }catch(NullPointerException ex){
+  System.out.println(&quot;不能为空&quot;);
+ }*/
+}
+System.out.println(&quot;end...&quot;);
+
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch25;<br>public class ExceptionTest<br>{<br>    public static void main(String… args){<br>    System.out.println(“start…”);<br>    try{//放的是正常运行方式<br>     String str=null;<br>    char c=str.charAt(0);<br>    System.out.println(c);<br>    int a=10/0;<br>    System.out.println(“a=”+a);</p>
+<pre><code>}catch(NullPointerException ex){
+ System.out.println(ex.getMessage());
+}
+catch(ArithmeticException e){
+ System.out.println(&quot;除数为0&quot;);
+ /*try{
+
+ }catch(NullPointerException ex){
+  System.out.println(&quot;不能为空&quot;);
+ }*/
+}
+System.out.println(&quot;end...&quot;);
+
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch24;<br>import java.util.<em>;<br>import java.io.</em>;<br>public class PropertiesTest<br>{<br>    public static void main(String… args) throws Exception{<br>      //查看JVM配置信息<br>      //获取Properties<br>      //Properties p=System.getProperties();<br>      // p.list(System.out);//在标准输出上输出配置信息<br>      //String p1=System.getProperty(“java.home”);<br>     // System.out.println(p1);<br>      Properties pro=new Properties();<br>      //加载文件<br>        pro.load(new FileInputStream(new File(“com/briup/ch24/info.properties”)));<br>         //根据key值取value值<br>         String n=pro.getProperty(“name”);<br>         String a=pro.getProperty(“age”);<br>         String g=pro.getProperty(“gender”);<br>         System.out.println(“n:”+n+”;a:”+a+”;g:”+g);</p>
+<pre><code>}
+</code></pre><p>}</p>
+<p>package com.briup.ch24;<br>import java.util.*;<br>interface MyList<e><br>{<br>    public void add(E e);<br>    public E remove(int index);<br>    public void set(int index,E e);<br>}<br>public class ListTest<e> implements MyList<e><br>{<br>    private List<e> list;<br>    public ListTest(){<br>    list=new ArrayList<e>();<br>    }<br>    public void add(E e){<br>    list.add(e);<br>    }<br>    public E remove(int index){<br>      return list.remove(index);<br>    }<br>    public void set(int index,E e){<br>    list.set(index,e);<br>    }<br>    public static void main(String… args){</e></e></e></e></e></p>
+<pre><code>MyList&lt;Integer&gt; list=new ListTest&lt;Integer&gt;();
+list.add(10);
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch24;<br>public class GenericsMap&lt;K,V&gt;<br>{<br>    private K key;<br>    private V value;<br>    public GenericsMap(K key,V value){<br>     this.key=key;<br>     this.value=value;<br>    }<br>    public K getKey(){<br>    return key;<br>    }<br>    public V getValue(){<br>     return value;<br>    }<br>    public static void main(String… args){<br>     GenericsMap&lt;Integer,String&gt; gm=new GenericsMap&lt;Integer,String&gt;(10,”aa”);<br>      GenericsMap&lt;String,String&gt; gm1=new GenericsMap&lt;Integer,String&gt;(“bb”,”aa”);<br>    }<br>}</p>
+<p>package com.briup.ch24;<br>public class GenericsList<e><br>{<br>    private E e;<br>    public void setE(E e){<br>    this.e=e;<br>    }<br>    public E getE(){<br>      return e;<br>    }<br>    public static void main(String… args){<br>    GenericsList<string> gl=new GenericsList<string>();<br>       gl.setE(“aa”);<br>       System.out.println(gl.getE());<br>       //gl.setE(true);//error<br>GenericsList<integer> gl1=new GenericsList<integer>();<br> gl1.setE(10);<br> System.out.println(gl1.getE());<br> //gl1.setE(“dd”);<br>    }<br>}</integer></integer></string></string></e></p>
+<p>package com.briup.ch24;<br>public class Student<br>{<br>    private String name;<br>    private int age;<br>    public Student(){</p>
+<pre><code>}
+public Student(String name,int age){
+ this.name=name;
+ this.age=age;
+}
+public void setName(String name){
+ this.name=name;
+}
+public String getName(){
+ return name;
+}
+public void setAge(int age){
+ this.age=age;
+}
+public int getAge(){
+ return age;
+}
+</code></pre><p>  public static void test(){<br>   System.out.println(“hello test”);<br>  }<br>}</p>
 
       
     </div>
@@ -671,7 +733,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -698,7 +760,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

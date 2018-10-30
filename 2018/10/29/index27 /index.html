@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="线程一：线程线程是程序执行的最小单位。进程是系统进程资源分配和系统调度的最小单位。是动态的。程序是静态的。线程和进程的目的：多任务—&amp;gt;效率高同时性 在同一个时间点只能执行一个进程或线程 在同一个时间段可以执行多个进程或线程进程数据不共享，每个进程都有自己的独立内存空间。线程数据共享一个程序可以启动多个进程一个进程可以启动多个线程线程必须通过进程启动，不能独立存在的。 .class运行在JVM">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-29T08:52:04.097Z">
+<meta property="og:updated_time" content="2018-10-30T12:15:47.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十七天笔记">
 <meta name="twitter:description" content="线程一：线程线程是程序执行的最小单位。进程是系统进程资源分配和系统调度的最小单位。是动态的。程序是静态的。线程和进程的目的：多任务—&amp;gt;效率高同时性 在同一个时间点只能执行一个进程或线程 在同一个时间段可以执行多个进程或线程进程数据不共享，每个进程都有自己的独立内存空间。线程数据共享一个程序可以启动多个进程一个进程可以启动多个线程线程必须通过进程启动，不能独立存在的。 .class运行在JVM">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-29T16:52:04+08:00">
-                2018-10-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:15:47+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  851字
+                  1,040字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  4分钟
                 </span>
               
             </div>
@@ -477,6 +477,22 @@
 <p> c)运行状态：线程调度程序从可运行池中选择一个线程作为<br>             当前线程时线程所处的状态。这也是线程进入<br>         运行状态的唯一一种方式。CPU正在执行的线程。</p>
 <p> d)等待/阻塞/睡眠状态：这是线程有资格运行时它所处的状态。<br>                       实际上这个三状态组合为一种，<br>               其共同点是：线程仍旧是活的，<br>               但是当前没有条件运行。换句话说，<br>               它是可运行的，但是如果某件事件<br>               出现，他可能返回到就绪状态。</p>
 <p> e)死亡状态：当线程的run()方法完成时就认为它死去。<br>          这个线程对象也许是活的，但是，它已经不<br>      是一个单独执行的线程。线程一旦死亡，就<br>      不能复生。 如果在一个死去的线程上调用<br>      start()方法，会抛出java.lang.IllegalThreadStateException异常。</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberRunnable implements Runnable{<br>      int i=1;<br> @Override<br> public void run(){</p>
+<pre><code>for(;i&lt;=100;i++){
+    //Thread.currentThread().getName()获取当前正在执行的线程名称
+    System.out.println(
+            Thread.currentThread().getName()+&quot;:&quot;+i);
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
+</code></pre><p> }<br> public static void main(String… args){<br>     /<em>Runnable r=new NumberRunnable();<br>     Thread t1=new Thread(r);<br>     Thread t2=new Thread(r);</em>/<br>     //第二种<br>     Runnable r1=new NumberRunnable();<br>     Thread t1=new Thread(r1);<br>     Runnable r2=new NumberRunnable();<br>     Thread t2=new Thread(r2);<br>     t1.start();<br>     t2.start();<br> }<br>}</p>
+<p>package com.briup.thread;</p>
+<p>public class NumberThread extends Thread{<br>    static int i=1;<br> @Override<br> public void run(){<br>    //int i=1;<br>    for(;i&lt;=100;i++){<br>        System.out.println(getName()+”:”+i);<br>        try {<br>            sleep(1000);//睡眠 毫秒<br>        } catch (InterruptedException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br> }<br> public static void main(String[] args){<br>     Thread t1=new NumberThread();//创建线程对象<br>     Thread t2=new NumberThread();<br>     t1.start();//启动线程 不能直接通过对象调用run方法<br>     t2.start();<br> }<br>}</p>
 
       
     </div>
@@ -676,7 +692,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -703,7 +719,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

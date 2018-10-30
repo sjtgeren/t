@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="f) 逻辑操作符   短路操作符，如果能根据操作左边的布尔表达式   就能推算出整个表达式的布尔值，将不执行操作   符右边的布尔表达式；&amp;amp;&amp;amp;:左边的布尔表达式的值为false, 整个表达式值肯定为false,         此时会忽略执行右边的布尔表达式。||:左边的布尔表达式的值为true, 整个表达式值肯定为true,         此时会忽略执行右边的布尔表达式。if(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T02:51:47.744Z">
+<meta property="og:updated_time" content="2018-10-30T11:47:14.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第八天笔记">
 <meta name="twitter:description" content="f) 逻辑操作符   短路操作符，如果能根据操作左边的布尔表达式   就能推算出整个表达式的布尔值，将不执行操作   符右边的布尔表达式；&amp;amp;&amp;amp;:左边的布尔表达式的值为false, 整个表达式值肯定为false,         此时会忽略执行右边的布尔表达式。||:左边的布尔表达式的值为true, 整个表达式值肯定为true,         此时会忽略执行右边的布尔表达式。if(">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T10:51:47+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:47:14+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,353字
+                  2,877字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分钟
+                  13分钟
                 </span>
               
             </div>
@@ -491,7 +491,253 @@
 </code></pre><p>  b)循环语句<br>  循环语句的作用是反复执行一段代码，直到不满足循环条件为止。<br>  循环语句一般应包括如下四部分内容：<br>     i)初始化部分：用来设置循环的一些初始条件，<br>                    比如循环控制变量的初始值；<br>     ii)循环条件:这是一个布尔表达式，<br>                 每一次循环都要对该表达式求值，<br>         以判断到底继续循环还是终止循环。<br>     iii) 循环体：这是循环操作的主体内容，可以是一条语句，也可以是多条语句；<br>     iv) 迭代部分:用来改变循环控制变量的值，<br>                  从而改变循环条件表达式的值；<br>    1)for<br>       语法：for(初始化部分；循环条件；迭代部分) {<br>                               循环体<br>             }<br>    2)while<br>       语法：[初始化部分]<br>           while(循环条件) {<br>                 循环体,包括迭代部分<br>           }</p>
 <pre><code>当循环条件为true时，就重复执行循环，否则终止循环；                 
 </code></pre><p>​<br>    3)do..while<br>       和while非常类似，只不过先执行循环体，然后再判断循环条件。<br>        语法：[初始化部分]<br>            do {<br>                循环体,包括迭代部分<br>            } while(循环条件);<br>    4)循环语句中流程跳转<br>        a) break: 终止当前或指定循环；<br>        b) continue: 跳过本次循环，执行下一次循环，<br>                 或执行标号标识的循环体。<br>    c) label: 标号用来标识程序中的语句，标号的名字可以是任意的合法标识符。<br>           continue语句中的标识必须定义在while、do…while和for循环语句前面；<br>           break语句中的标识必须定义在while、do…while和for循环语句或switch语句前面；</p>
-<p><br></p><br><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><p></p>
+<p><br></p><br><p></p>
+<p>package com.briup.ch07;<br>  public class BitTest<br>  {<br>      public static void main(String… args){<br>            out(11);<br>            int a=bitSet(11,3);<br>            out(a);<br>            int b=bitZero(10,2);<br>            out(b);<br>      }<br>      //输出二进制<br>      public static void out(int num){<br>      System.out.println(num+”的二进制是:”);<br>      for(int i=31;i&gt;=0;i–){<br>        System.out.print(num&gt;&gt;i &amp;1);<br>      }<br>      System.out.println();<br>      }<br>      //置1<br>      public static int bitSet(int num,int position){<br>         return num|(1&lt;&lt;(position-1));<br>      }<br>      //置0<br>      public static int bitZero(int num,int position){<br>         return num&amp;(~(1&lt;&lt;(position-1)));<br>      }<br>  }</p>
+<p>一：写Test.java，要求如下：</p>
+<p>1)传入一个int数，要求清除该数的低8位，高24位不变，将结果以十进制形式输出</p>
+<p>public class Test1{</p>
+<p>public static void main(){</p>
+<p>int a=100;</p>
+<p>System.out.println(a&amp;(-1&lt;&lt;8));</p>
+<p>   }</p>
+<p>}</p>
+<p>2)传入一个int数，要求将该数的低16位置1，高16位不变，将结果以十进制形式输出</p>
+<p>-1</p>
+<p>11111111 11111111 11111111 11111111</p>
+<p>-1&gt;&gt;&gt;16</p>
+<p>00000000 00000000 11111111 11111111</p>
+<p>00000000 00100000 00000000 00001010</p>
+<p>00000000 00000000 11111111 11111111</p>
+<p>public class Test2{</p>
+<p>public static void main(){</p>
+<p>int a=100;</p>
+<p>System.out.println(a|(-1&gt;&gt;&gt;16));</p>
+<p>}</p>
+<p>}</p>
+<p>一，请按照下列输出</p>
+<p>*</p>
+<p>**</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>int n=7;</p>
+<p>for(int i=0;i&lt;n;i++){</p>
+<p>for(int j=0;j&lt;=i;j++){</p>
+<p>System.out.print(“*”);</p>
+<p>}</p>
+<p>System.out.println();</p>
+<p>}</p>
+<p>​      *     </p>
+<p>​     **</p>
+<p>​    ***</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>int n=7;</p>
+<p>for(int i=0;i&lt;n;i++){</p>
+<p>for(int k=n-i-1;k&gt;0;k–){</p>
+<p>System.out.println(“ “);</p>
+<p>}</p>
+<p>for(int j=0;j&lt;=i;j++){</p>
+<p>System.out.print(“*”);</p>
+<p>}</p>
+<p>System.out.println();</p>
+<p>}</p>
+<p>​    *</p>
+<hr>
+<hr>
+<hr>
+<p>for(int i=0;i&lt;n;i++){</p>
+<p>for(int k=n-i-1;k&gt;0;k–){</p>
+<p>System.out.println(“ “);</p>
+<p>}</p>
+<p>for(int j=0;j&lt;=2*i;j++){</p>
+<p>System.out.print(“*”);</p>
+<p>}</p>
+<p>System.out.println();</p>
+<p>}</p>
+<p>二：写LoopTest.java，分别使用while/do/for循环实现1x2x…x10。</p>
+<p>public class LoopTest{</p>
+<p>public static void main(String[] args){</p>
+<p>int sum=1;</p>
+<p>String str=””;</p>
+<p>for(int i=1;i&lt;=10;i++){</p>
+<p>sum=sum*2;</p>
+<p>if(i&lt;10){</p>
+<p>str=str+i+”*”;</p>
+<p>}else{</p>
+<p>str=str+i;</p>
+<p>}</p>
+<p>}</p>
+<p>System.out.println(str+”=”+sum);</p>
+<p>}</p>
+<p>}</p>
+<p>三：创建一个阶乘应用程序Factor.java</p>
+<p>功能：一个数X 的阶乘（通常记作X!）等于X<em>(X-1)</em>(X-2)<em>…..</em>1。例如4!等于4×3×2×1=24。</p>
+<p>public class Factor {</p>
+<p>​    public static void main(String[] args) {</p>
+<p>​        Scanner sc = new Scanner(System.in);</p>
+<p>​        System.out.println(“输入一个数字”);</p>
+<p>​        int n = sc.nextInt();</p>
+<p>​        System.out.println(“结果是：”+f(n));</p>
+<p>​    }</p>
+<p>​    public static int f(int n){</p>
+<p>​        int sum = 1;</p>
+<p>​        for(int i = 1;i &lt;= n;++i){</p>
+<p>​            sum *= i; </p>
+<p>​        }</p>
+<p>​        return sum;</p>
+<p>​    }</p>
+<p>}</p>
+<p>五：打印出四种形式的九九乘法表</p>
+<p>提示：</p>
+<p>1、System.out.println()的功能为输出+换行</p>
+<p>​      System.out.print()的功能为输出</p>
+<p>2、在适当的位置可以使用’\t’进行对齐操作</p>
+<p>形式1：</p>
+<p>1*1= 1</p>
+<p>1<em>2= 2  2</em>2= 4</p>
+<p>1<em>3= 3  2</em>3= 6  3*3= 9</p>
+<p>1<em>4= 4  2</em>4= 8  3<em>4=12  4</em>4=16</p>
+<p>1<em>5= 5  2</em>5=10  3<em>5=15  4</em>5=20  5*5=25</p>
+<p>1<em>6= 6  2</em>6=12  3<em>6=18  4</em>6=24  5<em>6=30  6</em>6=36</p>
+<p>1<em>7= 7  2</em>7=14  3<em>7=21  4</em>7=28  5<em>7=35  6</em>7=42  7*7=49</p>
+<p>1<em>8= 8  2</em>8=16  3<em>8=24  4</em>8=32  5<em>8=40  6</em>8=48  7<em>8=56  8</em>8=64</p>
+<p>1<em>9= 9  2</em>9=18  3<em>9=27  4</em>9=36  5<em>9=45  6</em>9=54  7<em>9=63  8</em>9=72  9*9=81</p>
+<p>​      for (int i = 1; i &lt;= num; i++) {//形式1</p>
+<p>​     for (int j = 1; j &lt;= i; j++) {</p>
+<p>​     System.out.print(j + “<em>“ + i + “=” + j</em>i + “\t”); </p>
+<p>​        } </p>
+<p>​          System.out.println();</p>
+<p>​          }</p>
+<p>​    </p>
+<p>形式2：</p>
+<p>1<em>9= 9  2</em>9=18  3<em>9=27  4</em>9=36  5<em>9=45  6</em>9=54  7<em>9=63  8</em>9=72  9*9=81</p>
+<p>1<em>8= 8  2</em>8=16  3<em>8=24  4</em>8=32  5<em>8=40  6</em>8=48  7<em>8=56  8</em>8=64</p>
+<p>1<em>7= 7  2</em>7=14  3<em>7=21  4</em>7=28  5<em>7=35  6</em>7=42  7*7=49</p>
+<p>1<em>6= 6  2</em>6=12  3<em>6=18  4</em>6=24  5<em>6=30  6</em>6=36</p>
+<p>1<em>5= 5  2</em>5=10  3<em>5=15  4</em>5=20  5*5=25</p>
+<p>1<em>4= 4  2</em>4= 8  3<em>4=12  4</em>4=16</p>
+<p>1<em>3= 3  2</em>3= 6  3*3= 9</p>
+<p>1<em>2= 2  2</em>2= 4</p>
+<p>1*1= 1</p>
+<p>  for (int i = 9; i &gt;= 1; i–) {//形式2</p>
+<p>​     for (int j = 1; j &lt;= i; j++) {</p>
+<p>​    System.out.print(j + “<em>“ + i + “=” + j </em> i + “\t”);</p>
+<p>​        }</p>
+<p>​    System.out.println();</p>
+<p>​        }</p>
+<p>形式3：</p>
+<p>​                                                                1*1= 1</p>
+<p>​                                                        1<em>2= 2  2</em>2= 4</p>
+<p>​                                                1<em>3= 3  2</em>3= 6  3*3= 9</p>
+<p>​                                        1<em>4= 4  2</em>4= 8  3<em>4=12  4</em>4=16</p>
+<p>​                                1<em>5= 5  2</em>5=10  3<em>5=15  4</em>5=20  5*5=25</p>
+<p>​                        1<em>6= 6  2</em>6=12  3<em>6=18  4</em>6=24  5<em>6=30  6</em>6=36</p>
+<p>​                1<em>7= 7  2</em>7=14  3<em>7=21  4</em>7=28  5<em>7=35  6</em>7=42  7*7=49</p>
+<p>​        1<em>8= 8  2</em>8=16  3<em>8=24  4</em>8=32  5<em>8=40  6</em>8=48  7<em>8=56  8</em>8=64</p>
+<p>1<em>9= 9  2</em>9=18  3<em>9=27  4</em>9=36  5<em>9=45  6</em>9=54  7<em>9=63  8</em>9=72  9*9=81</p>
+<p>for (int i = 1; i &lt;= num; i++) {//形式3</p>
+<p>   for (int k = 1; k &lt;=num-i; k++) {//或者int k=9-i;k&gt;0;k–</p>
+<p>​    System.out.print(“\t”);</p>
+<p>​        }</p>
+<p>​    for (int j = 1; j &lt;= i; j++) {</p>
+<p>​      int a=j*i;</p>
+<p>​       if (a&gt;9) {</p>
+<p>​      System.out.print(j + “<em>“ + i + “=” + j </em> i + “\t”);</p>
+<p>​       }else {</p>
+<p>​        System.out.print(j + “<em>“ + i + “= “ + j </em> i + “\t”);</p>
+<p>​        }</p>
+<p>​                </p>
+<p>​        }</p>
+<p>​      System.out.println();</p>
+<p>​        }</p>
+<p>形式4：</p>
+<p>1<em>9= 9  2</em>9=18  3<em>9=27  4</em>9=36  5<em>9=45  6</em>9=54  7<em>9=63  8</em>9=72  9*9=81</p>
+<p>​        1<em>8= 8  2</em>8=16  3<em>8=24  4</em>8=32  5<em>8=40  6</em>8=48  7<em>8=56  8</em>8=64</p>
+<p>​                1<em>7= 7  2</em>7=14  3<em>7=21  4</em>7=28  5<em>7=35  6</em>7=42  7*7=49</p>
+<p>​                        1<em>6= 6  2</em>6=12  3<em>6=18  4</em>6=24  5<em>6=30  6</em>6=36</p>
+<p>​                                1<em>5= 5  2</em>5=10  3<em>5=15  4</em>5=20  5*5=25</p>
+<p>​                                        1<em>4= 4  2</em>4= 8  3<em>4=12  4</em>4=16</p>
+<p>​                                                1<em>3= 3  2</em>3= 6  3*3= 9</p>
+<p>​                                                        1<em>2= 2  2</em>2= 4</p>
+<p>​                                                                1*1= 1</p>
+<p> for (int i = 9; i &gt;= 1; i–) {//形式4</p>
+<p>​    for (int k = 1; k &lt;=num-i; k++) {</p>
+<p>​        System.out.print(“\t”);</p>
+<p>​        }</p>
+<p>​    for (int j = 1; j &lt;= i; j++) {</p>
+<p>​        int a=j*i;</p>
+<p>​        if (a&gt;9) {</p>
+<p>​        System.out.print(j + “<em>“ + i + “=” + j </em> i + “\t”);</p>
+<p>​        }else {</p>
+<p>​        System.out.print(j + “<em>“ + i + “= “ + j </em> i + “\t”);</p>
+<p>​        }</p>
+<p>​                </p>
+<p>​        }</p>
+<p>​            System.out.println();</p>
+<p>​        }    </p>
+<p>六：1,题目：有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？</p>
+<p>程序分析：可填在百位、十位、个位的数字都是1、2、3、4。组成所有的排列后再去掉不满足条件的排列。</p>
+<p>public class Digit{</p>
+<p>public static void main(String[] args){</p>
+<p>int i=0;  //保存百位上的数</p>
+<p>int j=0;  //保存十位上的数</p>
+<p>int k=0;  //保存个位上的数</p>
+<p>int t=0;  //保存数字个数 </p>
+<p>for(i=1;i&lt;=4;i++)｛</p>
+<p>   for(j=1;j&lt;=4;j++)｛</p>
+<p>   for(k=1;k&lt;=4;k++){</p>
+<p>​    if(i!=j &amp;&amp; j!=k &amp;&amp; i!=k){</p>
+<p>​         t+=1;</p>
+<p>​        System.out.println(i<em>100+j</em>10+k);</p>
+<p>​    } </p>
+<p>​     }  </p>
+<p>   }</p>
+<p> }</p>
+<p>System.out.println (t);</p>
+<p>}</p>
+<p>}</p>
+<p>七,判断101-200之间有多少个素数，并输出所有素数。</p>
+<p>只能被1和它本身整除的自然数为素数(质数)</p>
+<p>public class Prime {</p>
+<p>​    public static final void main(String[] args) {</p>
+<p>​        // 记录素数个数</p>
+<p>​        // 素数概念:除了1和它本身以外不再有其他的除数整除</p>
+<p>​        int num = 0;</p>
+<p>​        for (int i = 101; i &lt; 201; i++) {</p>
+<p>​            for (int k = 2; k &lt; i; k++) {</p>
+<p>​                int remainder = i % k;</p>
+<p>​                if (k == i - 1) {</p>
+<p>​                    ++num;</p>
+<p>​                    System.out.println(“素数：” + i);</p>
+<p>​                } else if (remainder == 0) {// 余数等于0说明有其他的除数整数,说明不是素数数</p>
+<p>​                    break;</p>
+<p>​                }</p>
+<p>​            }</p>
+<p>​        }</p>
+<p>​        System.out.println(num + “ 个”);</p>
+<p>​    }</p>
+<p>}</p>
+<p>八,打印出所有的“水仙花数”，所谓“水仙花数”是指一个三位数，其各位</p>
+<p>数字立方和等于该数本身。例如：153是一个“水仙花数”，因为</p>
+<p>153=1的三次方＋5的三次方＋3的三次方。</p>
+<p>Math.pow(a,3);</p>
+<p>a<em>a</em>a</p>
+<p>public class Flower {</p>
+<p>​    public static void main(String[] agrs) {</p>
+<p>​        for (int i = 100; i &lt; 1000; i++) {</p>
+<p>​            int a = i / 100;</p>
+<p>​            int b = i / 10 % 10;</p>
+<p>​            int c = i % 10;</p>
+<p>​            if (Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3) == i)</p>
+<p>​                System.out.println(“水仙花数 : “ +i);</p>
+<p>​        }</p>
+<p>​    }</p>
+<p>}</p>
 
       
     </div>
@@ -691,7 +937,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -718,7 +964,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

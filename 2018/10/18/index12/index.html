@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="java第十二天笔记 一. OOP中的基本概念​    Java的编程语言是面向对象的，采用这种语言进行编程称为面向对象编程(Object-Oriented Programming, OOP)， 它允许设计者将面向对象设计实现为一个可运行的系统。Java的编程单位是类，对象最后要通过类进行实例化(即“创建”)。面向对象编程有三个特性：封装，继承，多态的概念封装：对类中的属性和方法的具体实现进行封装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T02:51:30.586Z">
+<meta property="og:updated_time" content="2018-10-30T11:51:35.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第十二天笔记">
 <meta name="twitter:description" content="java第十二天笔记 一. OOP中的基本概念​    Java的编程语言是面向对象的，采用这种语言进行编程称为面向对象编程(Object-Oriented Programming, OOP)， 它允许设计者将面向对象设计实现为一个可运行的系统。Java的编程单位是类，对象最后要通过类进行实例化(即“创建”)。面向对象编程有三个特性：封装，继承，多态的概念封装：对类中的属性和方法的具体实现进行封装">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T10:51:30+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:51:35+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,232字
+                  1,732字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  7分钟
                 </span>
               
             </div>
@@ -511,6 +511,129 @@ Java程序是各种对象相互交互作用、而不是类。举例：
 修饰符：访问修饰符public,private或者static,final。
        没有优先级
 </code></pre><p>四. 参数传递：实参传递给形参<br>   形参：方法声明时的参数<br>   实参：方法调用时传递的参数<br>1）值传递：传递的是数值<br>          参数是基本数据类型的时候，采用值传递<br>2）地址传递：传递的是地址<br>          参数是引用数据类型的时候，采用地址传递</p>
+<p>package ex.md04;</p>
+<p>public class Teacher<br>{<br>    public int id;<br>    public String name;<br>    public double salary;<br>    public int clRoomId;<br>    public int age;</p>
+<pre><code>public Teacher(){}
+
+public Teacher(int id, String name, double salary, int clRoomId, int age){
+    this.id = id;
+    this.name = name;
+    this.salary = salary;
+    this.clRoomId = clRoomId;
+    this.age = age;
+}
+
+public void print(){
+    System.out.println(&quot;---- Teacher ----&quot;);
+    System.out.println(&quot;id:&quot; + this.id);
+    System.out.println(&quot;name:&quot; + name);
+    System.out.println(&quot;salary:&quot; + salary);
+    System.out.println(&quot;classroom id:&quot; + clRoomId);
+    System.out.println(&quot;age:&quot; + age);
+}
+</code></pre><p>}</p>
+<p>package ex.md04;</p>
+<p>public class Classroom<br>{<br>    public Teacher teacher;                        //保存教师<br>    public Student[] students = new Student[40];//保存学生<br>    public int index = 0;                        //保存学生数量<br>    int i,j;<br>    public Teacher getTeacher(){<br>        //返回教室中的教师<br>        return teacher;<br>    }</p>
+<pre><code>public Student[] getStudents(){
+    return students;
+    //返回所有的学生
+}
+
+public void setTeacher(Teacher tea){
+    //更换教师
+    this.teacher=tea;
+}
+
+public void addStudent(Student stu){
+    //增加学生
+
+    if (index&lt;40) {
+        students[index]=stu;
+    }else {
+        //复制一下数组
+         Student[] ss=new Student[index*2];
+         System.arraycopy(students, 0, ss, 0,students.length);
+         students=ss;
+         students[index]=stu;
+    }
+    index++;
+}
+
+public boolean removeStudent(int idx){
+    //删除学生
+    if (idx&gt;students.length-1) {
+        return false;
+    } else {
+        for (i=0;i&lt;students.length;i++){  
+            if (i==idx){  
+             break;  
+            }  
+          }  
+          if(i&lt;students.length){  
+           if(i &lt;=students.length-2){  
+             for(j=i;j&lt;students.length-1;j++){  
+              students[j]=students[j+1];  
+             }  
+             Arrays.copyOf(students, students.length-1);
+             /*for (int k = 0; k &lt; students.length; k++) {
+                System.out.println(students[k].id);
+            }*/
+           }  
+          }
+        return true;
+    }
+}
+
+public int getStudentNum(){
+    return index;
+    //返回教室中学生的数量
+
+}
+
+public void print(){
+    //输出当前教室中的教师和学生的信息
+    teacher.print();
+    for (int i = 0; i &lt; students.length-1; i++) {
+        students[i].print();
+    }
+}
+</code></pre><p>}</p>
+<p>package ex.md04;</p>
+<p>public class ClassroomTest<br>{<br>    public static void main(String[] args)<br>    {<br>        //创建Classroom对象<br>        Classroom cr=new Classroom();</p>
+<pre><code>    //创建Teacher对象，并将Teacher分配到Classroom中
+    Teacher tc=new Teacher(1,&quot;tt&quot;,1000.30,20,30);
+    cr.setTeacher(tc);
+
+    //创建3个Student对象，并将Student分配到Classroom中
+    Student st1=new Student(0, &quot;tom1&quot;,12);
+    Student st2=new Student(1, &quot;tom2&quot;,13);
+    Student st3=new Student(2, &quot;tom3&quot;,14);
+    cr.addStudent(st1);
+    cr.addStudent(st2);
+    cr.addStudent(st3);
+    //调用Classroom中的其它方法，测试方法的业务逻辑是否准确
+    //cr.print();
+   /* boolean b = cr.removeStudent(50);
+    System.out.println(b);*/
+    int num = cr.getStudentNum();
+    System.out.println(num);
+}
+</code></pre><p>}</p>
+<p>package ex.md04;</p>
+<p>public class Student<br>{<br>    public int id;<br>    public String name;<br>    public int age;</p>
+<pre><code>public void print(){
+    System.out.println(&quot;------ Student ------&quot;);
+    System.out.println(&quot;id:&quot; + id);
+    System.out.println(&quot;name:&quot; + name);
+    System.out.println(&quot;age:&quot; + age);
+}
+
+public Student(int sId, String sName, int sAge){
+    id = sId;
+    name = sName;
+    age = sAge;
+}
+</code></pre><p>}</p>
 
       
     </div>
@@ -735,7 +858,7 @@ Java程序是各种对象相互交互作用、而不是类。举例：
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -762,7 +885,7 @@ Java程序是各种对象相互交互作用、而不是类。举例：
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

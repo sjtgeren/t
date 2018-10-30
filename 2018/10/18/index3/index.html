@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="目标： 1. 标识符、关键字和类型介绍； 2. 如何构建类? 第二章： Identifiers, Keywords and Types目标：1. 注释作用：使部分内容只为程序员可见，         不为编译器所编译、虚拟机所执行；增加程序的可读性     位置：类声明前后、方法声明前后、属性声明前后、方法体中。          几乎可以在一个源文件任意位置，但不能在一个关键字字      符中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T02:04:59.536Z">
+<meta property="og:updated_time" content="2018-10-30T11:41:13.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第四天笔记">
 <meta name="twitter:description" content="目标： 1. 标识符、关键字和类型介绍； 2. 如何构建类? 第二章： Identifiers, Keywords and Types目标：1. 注释作用：使部分内容只为程序员可见，         不为编译器所编译、虚拟机所执行；增加程序的可读性     位置：类声明前后、方法声明前后、属性声明前后、方法体中。          几乎可以在一个源文件任意位置，但不能在一个关键字字      符中">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T10:04:59+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:41:13+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,908字
+                  5,498字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  19分钟
+                  21分钟
                 </span>
               
             </div>
@@ -845,6 +845,55 @@ getName后紧跟的大括号为方法体，代表getName的具体实现。
              如果是静态成员变量，则位于方法区；
              如果是实例成员变量，则位于堆区；
 </code></pre><p>​<br>    面向对象编程的步骤：<br>      1）从需求中寻找名词性短语，构建class,有相应的属性和行为<br>      2）产生对象<br>      3）访问属性，方法(.)             </p>
+<p>第二章：标识符、关键字、类型</p>
+<p>1） 基础实验：</p>
+<p>\1. 单行、多行注释例子</p>
+<p>符中插入注释。</p>
+<p>​     类型：1) 单行注释：//text——从”//“到本行结束的所有字符均作为注释而被编译器忽略</p>
+<p>​           2) 多行注释：/<em>text</em>/——从”/<em>“到”</em>/“间的所有字符会被编译器忽略</p>
+<p>​           3) 文档注释：/<strong> text */——从”/</strong>“到”*/“间的所有字符会被编译器忽略。</p>
+<p>\2. 写一java程序添加文档注释，通过javadoc产生API文档（包含作者、版本等信息）</p>
+<p>\3. 数据类型测试例子</p>
+<p>\4. 类、对象测试例子</p>
+<p>二）扩展实验：</p>
+<p>\1. 找零问题：有2元，买东西花了1.1元，问找零多少?</p>
+<p>System.out.println(2.00-1.10);    </p>
+<p>​    注意：在需要精确答案的地方，要避免使用float或double；对于货币计算，要使用int、long或BigDecimal</p>
+<p>\2. 长整除问题：int(-2^32~2^31-1) -2147483648~2147483647</p>
+<p>​    long micros_per_day = 24 <em> 60 </em> 60 <em> 1000 </em> 1000;</p>
+<p>​    long millis_per_day = 24 <em> 60 </em> 60 * 1000;</p>
+<p>​    System.out.println(micros_per_day / millis_per_day);</p>
+<p>输出结果。    </p>
+<p>注意：当你操作很大的数字时，一定要提防溢出；较大整数运算可使用BigInteger</p>
+<p>\3. 初级问题</p>
+<p>​    System.out.println(12345 + 5432l)输出结果。</p>
+<p>​    注意：做题要细心；在long类型字面常量中，一定要用大写的L</p>
+<p>三）作业：</p>
+<p>\1. java中注释的分类?</p>
+<p>单行、多行注释</p>
+<p>\2. java中标示符的命名规则?</p>
+<p> 1) java标识符以字母、<em>和$开头，不能以数字开头，后跟字母、数字、“</em>”和“$”的组合;</p>
+<p>​       2) 大小写敏感</p>
+<p>​       3) 没有长度限制。</p>
+<p>​       4) 不能使用java的关键字</p>
+<p>​       举例：  合法标识符       非法标识符</p>
+<p>​                try                    try#</p>
+<p>​                GROUP_7                7GROUP</p>
+<p>​                openDoor               open-door</p>
+<p>​                boolean1               boolean</p>
+<p>\3. java中有哪些常用的基本数据类型</p>
+<p>数值类型</p>
+<p>​                   整数类型:byte,short,int,long</p>
+<p>​               浮点数类型:float,double</p>
+<p>​              布尔类型：boolean</p>
+<p>​              字符类型：char</p>
+<p>​           引用数据类型</p>
+<p>​               类类型:比如String</p>
+<p>​                       接口类型</p>
+<p>​                       数组类型</p>
+<p>4.基本数据类型和引用类型的区别</p>
+<p>基本数据类型在被创建时，在栈上给其划分一块内存，将数值直接存储在栈上。</p>
+<p>引用数据类型在被创建时，首先要在栈上给其引用（句柄）分配一块内存，而对象的具体信息都存储在堆内存上，然后由栈上面的引用指向堆中对象的地址。</p>
 
       
     </div>
@@ -1044,7 +1093,7 @@ getName后紧跟的大括号为方法体，代表getName的具体实现。
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -1071,7 +1120,7 @@ getName后紧跟的大括号为方法体，代表getName的具体实现。
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

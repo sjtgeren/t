@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="一：方法的定义和方法的调用   方法的定义：修饰符  方法的返回值 方法名(参数列表){            方法体        }      如果没有方法的返回值就写成:void      参数列表：参数类型 参数名   方法的调用：方法名(参数值)二：javac -d . First.java  -d指定生成的class文件存放的路径     连同包一起编译。java com.briup.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T11:16:01.447Z">
+<meta property="og:updated_time" content="2018-10-30T11:43:56.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第五天笔记">
 <meta name="twitter:description" content="一：方法的定义和方法的调用   方法的定义：修饰符  方法的返回值 方法名(参数列表){            方法体        }      如果没有方法的返回值就写成:void      参数列表：参数类型 参数名   方法的调用：方法名(参数值)二：javac -d . First.java  -d指定生成的class文件存放的路径     连同包一起编译。java com.briup.">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-18T19:16:01+08:00">
-                2018-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:43:56+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,481字
+                  5,818字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  21分钟
+                  22分钟
                 </span>
               
             </div>
@@ -645,216 +645,252 @@ System.out.println(f4);           //打印Infinity
 </ol>
 </li>
 </ol>
-<pre><code>                Float.NaN                         非数字
-                Float.POSITIVE_INFINITY           无穷大
-                Float.NEGATIVE_INFINITY           负无穷大
+<p>​<br>                    Float.NaN                         非数字<br>                    Float.POSITIVE_INFINITY           无穷大<br>                    Float.NEGATIVE_INFINITY           负无穷大</p>
+<pre><code>            float f1 = (float)(0.0/0.0);      //f1的取值为Float.NaN
+            float f2 = (float)(1.0/0.0);      //f2的取值为Float.POSITIVE_INFINITY
+            float f3 = (float)(-1.0/0.0);     //f3的取值为Float.NEGATIVE_INFINITY
+            System.out.println(f1);           //打印NaN;
+            System.out.println(f2);           //打印Infinity
+            System.out.println(f3);           //打印-Infinity
 
-                float f1 = (float)(0.0/0.0);      //f1的取值为Float.NaN
-                float f2 = (float)(1.0/0.0);      //f2的取值为Float.POSITIVE_INFINITY
-                float f3 = (float)(-1.0/0.0);     //f3的取值为Float.NEGATIVE_INFINITY
-                System.out.println(f1);           //打印NaN;
-                System.out.println(f2);           //打印Infinity
-                System.out.println(f3);           //打印-Infinity
+            Java语言之所以提供以上特殊数字， 是为了提高Java程序的健壮性，并且简化编程。当数字运算出错时，可以用浮
+            点数取值范围内的特殊数字来表示所产生的结果。否则，如果Java程序在进行数学运算遇到错误时就抛出异常，会影
+            响程序的健壮性，而且程序中必须提供捕获数学运算异常的代码块，增加了编程工作量。
 
-                Java语言之所以提供以上特殊数字， 是为了提高Java程序的健壮性，并且简化编程。当数字运算出错时，可以用浮
-                点数取值范围内的特殊数字来表示所产生的结果。否则，如果Java程序在进行数学运算遇到错误时就抛出异常，会影
-                响程序的健壮性，而且程序中必须提供捕获数学运算异常的代码块，增加了编程工作量。
+ 10. 变量的申明和赋值
 
-     10. 变量的申明和赋值
+          程序的基本功能是处理数据
+          程序用变量来表示数据；
+          程序中必须先定义变量才能使用；
+          定义变量是指设定变量的数据类型和变量的名字，定义变量的基本语法为：
 
-              程序的基本功能是处理数据
-              程序用变量来表示数据；
-              程序中必须先定义变量才能使用；
-              定义变量是指设定变量的数据类型和变量的名字，定义变量的基本语法为：
+          数据类型  变量名；
 
-              数据类型  变量名；
+          Java语言要求变量遵循先定义，再初始化，然后使用的规则。变量的初始化是指自从变量定义以后，首次给它赋初始
+          值的过程。例：
 
-              Java语言要求变量遵循先定义，再初始化，然后使用的规则。变量的初始化是指自从变量定义以后，首次给它赋初始
-              值的过程。例：
+          int a;          //定义变量a
+          a = 1;          //初始化变量a
+          a++;            //使用变量a
+          int b=a;        //定义变量b, 初始化变量b, 使用变量a;
+          b++;            //使用变量b
 
-              int a;          //定义变量a
-              a = 1;          //初始化变量a
-              a++;            //使用变量a
-              int b=a;        //定义变量b, 初始化变量b, 使用变量a;
-              b++;            //使用变量b
+  11. 推荐命名规则
 
-      11. 推荐命名规则
+          1) 类名以大写字母开头；
+          2) 接口名以大写字母开头；
+          3) 方法名以小写字母开头；
+          4) 变量名以小写字母开头；
+          5) 常量名全部大写，多个单词以&quot;_&quot;连接；
 
-              1) 类名以大写字母开头；
-              2) 接口名以大写字母开头；
-              3) 方法名以小写字母开头；
-              4) 变量名以小写字母开头；
-              5) 常量名全部大写，多个单词以&quot;_&quot;连接；
+ 12. 理解对象
+          明白什么是面向对象编程
+          面向对象的开发方法把软件系统看成各种对象的集合，
+  对象就是最小的子系统，一组相关的对象能够组合成更复杂的
+          子系统。面向对象的开发方法将软件系统看成各种对象的集合，
+  接近人的自然思维方式。
 
-     12. 理解对象
-              明白什么是面向对象编程
-              面向对象的开发方法把软件系统看成各种对象的集合，
-      对象就是最小的子系统，一组相关的对象能够组合成更复杂的
-              子系统。面向对象的开发方法将软件系统看成各种对象的集合，
-      接近人的自然思维方式。
+          对象是对问题领域中事件的抽象。对象具有以下特性：
 
-              对象是对问题领域中事件的抽象。对象具有以下特性：
+          1) 万物皆为对象。问题领域中的实体和概念都可以抽象为对象。
+     例如学生，成绩单、教师、课和教室。
+          2) 每个对象都是惟一的。正如世界上不存在一模一样的叶子。
+          3) 对象具有属性和行为。
+             例如小张，性别女，年龄22，身高1.6m, 体重40kg, 能够学习，唱歌。
+     小张的属性包括姓名、性别、年龄、身高和体重，行为包括学习、唱歌。
+             例如一部手机，牌子是诺基亚、价格是2000元，银白色，能够拍照、打电话和收发短信等。这部手机的属性包括
+    品牌类型type、价格price和颜色color，行为包括拍照takePhoto()，打电话call()，收发
+     短信receiveMessage()和发短信sendMessage().
+          4) 对象具有状态。状态是指某个瞬间对象的各个属性的取值。
+     对象的某些行为会改变对象自身的状态，即属性的取值。
+             例如小张本来体重为40kg，经为减肥后，体重减到45kg. 
 
-              1) 万物皆为对象。问题领域中的实体和概念都可以抽象为对象。
-         例如学生，成绩单、教师、课和教室。
-              2) 每个对象都是惟一的。正如世界上不存在一模一样的叶子。
-              3) 对象具有属性和行为。
-                 例如小张，性别女，年龄22，身高1.6m, 体重40kg, 能够学习，唱歌。
-         小张的属性包括姓名、性别、年龄、身高和体重，行为包括学习、唱歌。
-                 例如一部手机，牌子是诺基亚、价格是2000元，银白色，能够拍照、打电话和收发短信等。这部手机的属性包括
-        品牌类型type、价格price和颜色color，行为包括拍照takePhoto()，打电话call()，收发
-         短信receiveMessage()和发短信sendMessage().
-              4) 对象具有状态。状态是指某个瞬间对象的各个属性的取值。
-         对象的某些行为会改变对象自身的状态，即属性的取值。
-                 例如小张本来体重为40kg，经为减肥后，体重减到45kg. 
+             肥胖状态: 40kg
+                    |
+                    | 减肥行为
+                    |                            
+             肥胖状态: 35kg 
 
-                 肥胖状态: 40kg
-                        |
-                        | 减肥行为
-                        |                            
-                 肥胖状态: 35kg 
+          5) 每个对象都是某个类的实例。小张和小王都属于学生类、
+     中国和美国都属于国家类、中文和英文都属于语言类。
+             类是具有相同属性和行为的对象的集合。
 
-              5) 每个对象都是某个类的实例。小张和小王都属于学生类、
-         中国和美国都属于国家类、中文和英文都属于语言类。
-                 类是具有相同属性和行为的对象的集合。
+             同一个类的所有实例都有相同属性，但属性取值不一事实上相同，
+     但是它们的状态不一定相同。例如小张和小王都属
+             于学生类，都有姓名、性别、年龄、身高和体重这些属性，
+     但是他们的属性取值不同。
 
-                 同一个类的所有实例都有相同属性，但属性取值不一事实上相同，
-         但是它们的状态不一定相同。例如小张和小王都属
-                 于学生类，都有姓名、性别、年龄、身高和体重这些属性，
-         但是他们的属性取值不同。
+             同一个类的所有实例都有相同行为，意味着它们具有一些相同的功能。
 
-                 同一个类的所有实例都有相同行为，意味着它们具有一些相同的功能。
+      13. 创建类
 
-          13. 创建类
+          类是一组具有相同属性和行为对象的模板。
+  面向对象编程的主要任务就是定义对象模型中的各个类。
 
-              类是一组具有相同属性和行为对象的模板。
-      面向对象编程的主要任务就是定义对象模型中的各个类。
+          package sample;
 
-              package sample;
+          public class Teacher {
 
-              public class Teacher {
+              /**attributes of a teacher*/
+              private String name;
+              private int age;
+              private double salary;
 
-                  /**attributes of a teacher*/
-                  private String name;
-                  private int age;
-                  private double salary;
-
-                   /** Creates a new instance of Teacher */
-                  public Teacher(String name, int age, double salary) {
-                      this.salary = salary;
-                      this.age = age;
-                      this.name = name;
-                  }
-                  /**operations on properties */
-                  /** get the name of this teacher */
-                  public String getName() { return name; }
-                  /**get the salary of this teacher */
-                  public double getSalary() { return salary; }
-                  /**get the age of teacher teacher */
-                  public int getAge() { return age; } 
-                  ……
+               /** Creates a new instance of Teacher */
+              public Teacher(String name, int age, double salary) {
+                  this.salary = salary;
+                  this.age = age;
+                  this.name = name;
               }
+              /**operations on properties */
+              /** get the name of this teacher */
+              public String getName() { return name; }
+              /**get the salary of this teacher */
+              public double getSalary() { return salary; }
+              /**get the age of teacher teacher */
+              public int getAge() { return age; } 
+              ……
+          }
 
-              代码解析： 
+          代码解析： 
 
-              1) package sample;
-                 包声明语句，将Java类放到特定的包中，便于类的组织、权限访问和区分名字相同的类。
-              2) public class Teacher {...}
-                 类的声明语句，类名为Teacher,
-         public修饰符意味着这个类可以被公开访问；
+          1) package sample;
+             包声明语句，将Java类放到特定的包中，便于类的组织、权限访问和区分名字相同的类。
+          2) public class Teacher {...}
+             类的声明语句，类名为Teacher,
+     public修饰符意味着这个类可以被公开访问；
 
-                 声明类的格式：
+             声明类的格式：
 
-                 class 类名 {
-                     类内容
+             class 类名 {
+                 类内容
+             }
+
+          3) private String name;
+       类的属性(也称为成员变量)的声明语句；
+   Teacher类有一个name属性，字符串类型，
+   private修饰符意味着这个属性不能被公开访问。
+          4) public String getName() { return name; }
+        方法的声明语句和方法体
+        方法名为getName，不带参数，
+String表明返回类型为String。
+public表明这个方法可以被公开访问。
+getName后紧跟的大括号为方法体，代表getName的具体实现。
+
+             声明方法的格式： 
+
+             返回值类型 方法名 (参数列表) {
+                 方法体
+             }
+
+             返回值类型是方法的返回数据的类型, 如果返回值类型为void, 表示没有返回值。
+             方法名是任意合法的标识符;
+             参数列表可包含零个或多个参数，参数之间以逗号&quot;,&quot;分开。
+             方法体每个语句用&quot;;&quot;结束；
+             方法体中使用return语句返回数据或结束本方法的执行；
+
+          注：不介绍构造方法。在面向对象章节会提到。
+
+      14. 创建实例
+
+          public static void main(String[] args) {
+                  Teacher gzhu = new Teacher(&quot;George Zhu&quot;, 30, 10000);
+                  System.out.println(&quot;Teacher: &quot; + gzhu.getName());
+                  System.out.println(&quot;\tAge: &quot; + gzhu.getAge());
+                  System.out.println(&quot;\tSalary: &quot; + gzhu.getSalary());
+          }
+
+       main()方法是Java应用程序的入口点，
+   每个Java应用程序都是从main()方法开始运行的。
+   作为程序入口的main()方法必须同时符合以下几个条件：
+          . 用public static修饰；
+          . 返回类型为void;
+          . 方法名为main;
+          . 参数类型为String[];
+          包含main方法的类又叫主程序类。
+
+          类创建好之后，通过new关键字创建具体对象。它有以下作用：
+          . 为对象分配内存空间，将对象的实例变量自动初始化为其变量类型的默认值；
+          . 如实例变量显示初始化，将初始化值赋给实例变量；
+          . 调用构造方法；
+          . 返回对象的引用；
+
+          注：结合实例，并画内存分配图讲解。
+
+      15. 基本类型和引用类型的区别     
+
+          1) 基本类型代表简单的数据类型，比如整数和字符。
+             引用类型代表复杂数据类型，引用类型所引用的
+     实例包括操纵这种数据类型的行为。
+
+             通过&quot;.&quot;运算符，就能访问引用变量所引用的实例的方法.
+          2) 基本类型Java虚拟机会为其分配数据类型实际占用的内存空间；
+             引用类型仅是一个指向堆区中某个实例的指针。
+
+             例：public class Counter {
+                    int count = 13;
                  }
 
-              3) private String name;
-           类的属性(也称为成员变量)的声明语句；
-       Teacher类有一个name属性，字符串类型，
-       private修饰符意味着这个属性不能被公开访问。
-              4) public String getName() { return name; }
-            方法的声明语句和方法体
-            方法名为getName，不带参数，
-    String表明返回类型为String。
-    public表明这个方法可以被公开访问。
-    getName后紧跟的大括号为方法体，代表getName的具体实现。
+                 Counter counter = new Counter();
 
-                 声明方法的格式： 
+                 counter引用变量-------------&gt; Counter实例
+                                                count变量(占4个字节,值为13)
 
-                 返回值类型 方法名 (参数列表) {
-                     方法体
-                 }
+        counter引用变量的取值为Counter实例的内存地址。
+        counter引用变量本身也占一定的内存空间，
+到底占用多少内存空间取决于Java虚拟机的实现，这对Java程序是透明的。
 
-                 返回值类型是方法的返回数据的类型, 如果返回值类型为void, 表示没有返回值。
-                 方法名是任意合法的标识符;
-                 参数列表可包含零个或多个参数，参数之间以逗号&quot;,&quot;分开。
-                 方法体每个语句用&quot;;&quot;结束；
-                 方法体中使用return语句返回数据或结束本方法的执行；
+         注：counter引用变量到底位于Java虚拟机的运行时数据区的哪个区？
+     取决于counter变量的作用域，
+     如果是局部变量，则位于Java栈区；
+             如果是静态成员变量，则位于方法区；
+             如果是实例成员变量，则位于堆区；
+</code></pre><p>​<br>    面向对象编程的步骤：<br>      1）从需求中寻找名词性短语，构建class,有相应的属性和行为<br>      2）产生对象<br>      3）访问属性，方法(.)</p>
+<p> 第二章（续）<br>一.基本数据类型变量和引用数据类型变量：<br>   1)使用基本数据类型定义的变量叫做基本数据类型变量<br>    int a=10;<br>       保存是数据本身的数值(二进制)<br>   2）使用引用数据类型定义的变量叫做引用数据类型变量<br>    Teacher t=new Teacher();<br>       保存是堆区开辟的地址<br>   new关键字：<br>     a)在栈区开辟空间保存对象的引用<br>     b)在堆区开辟空间保存对象本身<br>     c)堆区的地址赋值给栈区的对象的引用<br>二：运行时数据区<br>一个完整的Java程序运行过程会涉及以下内存区域<br>方法区/代码区：存放类的信息<br>堆区：用来存放动态产生的数据，比如new出来的对象。<br>     注意创建出来的对象只包含属于各自的成员变量，<br>     并不包括成员方法。因为同一个类的对象拥有各自<br>     的成员变量，存储在各自的堆中，但是他们共享该<br>     类的方法，并不是每创建一个对象就把成员方法复制一次。<br>栈区：保存局部变量的值，包括：<br>     1.用来保存基本数据类型的值；<br>     2.保存类的实例，即堆区对象的引用(指针)。<br>       也可以用来保存加载方法时的帧<br>常量池：JVM为每个已加载的类型维护一个常量池，<br>        常量池就是这个类型用到的常量的一个有序集合。<br>    常量池存在于堆中。<br>PC寄存器：指向下一条需要执行的指令，将该数据传递给CPU</p>
+<p>package com.briup.ch05;<br>public class Student<br>{<br>    //声明变量<br>    int age;<br>    String name;<br>    int classId;<br>    //无参构造器<br>    public Student(){</p>
+<pre><code>}
+//有参构造器
+public Student(int age,String name,int classId){
+    this.age=age;
+    this.name=name;
+    this.classId=classId;
+}
+//赋值或修改值
+public void setClassId(int classId){
+this.classId=classId;
+}
+public void setName(String name){
+this.name=name;
+}
+</code></pre><p>   //单一取值<br>   public String getName(){<br>   return name;<br>   }<br>public void display(){<br>System.out.println(name+” “+age+” “+classId);<br>}<br>}</p>
+<p>package com.briup.ch05;<br>    public class VariableTest<br>    {<br>        public static void main(String… args){<br>        int a;<br>        a=20;<br>        int b=a;<br>        int c=b++;<br>        System.out.println(b);</p>
+<pre><code>    }
+}
+</code></pre><p>package com.briup.ch05;<br>//import com.briup.ch04.Student;<br>    public class StudentTest<br>    {<br>        public static void main(String… args){<br>            //如果你所用的其他类和当前类在同一包下，不需要导包，但是如果不在同一包下，必须指定<br>           Student stu=new Student();<br>           stu.setName(“李四”);<br>           stu.display();<br>           Student stu1=new Student(18,”张三”,2);//初始化数据<br>               stu1.setClassId(1);<br>              // String name=stu1.getName();<br>               System.out.println(stu1.getName());<br>           stu1.display();<br>           Student stu2=stu1;<br>           stu2.setClassId(2);<br>           stu2.display();<br>        }<br>    }</p>
+<p>package com.md02;</p>
+<p>public class Teacher<br>{<br>    public String name;        //姓名<br>    public int age;            //年龄<br>    public double salary;    //薪水</p>
+<pre><code>//用于年龄增加的方法
+public void increaseAge(){
+    age++;
+}    
+</code></pre><p>}</p>
+<p>package com.md02;</p>
+<p>public class TeacherTest<br>{<br>        public static void main(String[] args)<br>    {<br>        //创建对象<br>        Teacher t = new Teacher();</p>
+<pre><code>    //为对象的属性赋值
+    t.name = &quot;George&quot;;
+    t.age = 30;
+    t.salary = 10000;
 
-              注：不介绍构造方法。在面向对象章节会提到。
+    //输出对象的属性
+    System.out.println(&quot;name=&quot; + t.name);
+    System.out.println(&quot;age=&quot; + t.age);
+    System.out.println(&quot;salary=&quot; + t.salary);
 
-          14. 创建实例
-
-              public static void main(String[] args) {
-                      Teacher gzhu = new Teacher(&quot;George Zhu&quot;, 30, 10000);
-                      System.out.println(&quot;Teacher: &quot; + gzhu.getName());
-                      System.out.println(&quot;\tAge: &quot; + gzhu.getAge());
-                      System.out.println(&quot;\tSalary: &quot; + gzhu.getSalary());
-              }
-
-           main()方法是Java应用程序的入口点，
-       每个Java应用程序都是从main()方法开始运行的。
-       作为程序入口的main()方法必须同时符合以下几个条件：
-              . 用public static修饰；
-              . 返回类型为void;
-              . 方法名为main;
-              . 参数类型为String[];
-              包含main方法的类又叫主程序类。
-
-              类创建好之后，通过new关键字创建具体对象。它有以下作用：
-              . 为对象分配内存空间，将对象的实例变量自动初始化为其变量类型的默认值；
-              . 如实例变量显示初始化，将初始化值赋给实例变量；
-              . 调用构造方法；
-              . 返回对象的引用；
-
-              注：结合实例，并画内存分配图讲解。
-
-          15. 基本类型和引用类型的区别     
-
-              1) 基本类型代表简单的数据类型，比如整数和字符。
-                 引用类型代表复杂数据类型，引用类型所引用的
-         实例包括操纵这种数据类型的行为。
-
-                 通过&quot;.&quot;运算符，就能访问引用变量所引用的实例的方法.
-              2) 基本类型Java虚拟机会为其分配数据类型实际占用的内存空间；
-                 引用类型仅是一个指向堆区中某个实例的指针。
-
-                 例：public class Counter {
-                        int count = 13;
-                     }
-
-                     Counter counter = new Counter();
-
-                     counter引用变量-------------&gt; Counter实例
-                                                    count变量(占4个字节,值为13)
-
-            counter引用变量的取值为Counter实例的内存地址。
-            counter引用变量本身也占一定的内存空间，
-    到底占用多少内存空间取决于Java虚拟机的实现，这对Java程序是透明的。
-
-             注：counter引用变量到底位于Java虚拟机的运行时数据区的哪个区？
-         取决于counter变量的作用域，
-         如果是局部变量，则位于Java栈区；
-                 如果是静态成员变量，则位于方法区；
-                 如果是实例成员变量，则位于堆区；
-
-
-面向对象编程的步骤：
-  1）从需求中寻找名词性短语，构建class,有相应的属性和行为
-  2）产生对象
-  3）访问属性，方法(.)
-</code></pre><p> 第二章（续）<br>一.基本数据类型变量和引用数据类型变量：<br>   1)使用基本数据类型定义的变量叫做基本数据类型变量<br>    int a=10;<br>       保存是数据本身的数值(二进制)<br>   2）使用引用数据类型定义的变量叫做引用数据类型变量<br>    Teacher t=new Teacher();<br>       保存是堆区开辟的地址<br>   new关键字：<br>     a)在栈区开辟空间保存对象的引用<br>     b)在堆区开辟空间保存对象本身<br>     c)堆区的地址赋值给栈区的对象的引用<br>二：运行时数据区<br>一个完整的Java程序运行过程会涉及以下内存区域<br>方法区/代码区：存放类的信息<br>堆区：用来存放动态产生的数据，比如new出来的对象。<br>     注意创建出来的对象只包含属于各自的成员变量，<br>     并不包括成员方法。因为同一个类的对象拥有各自<br>     的成员变量，存储在各自的堆中，但是他们共享该<br>     类的方法，并不是每创建一个对象就把成员方法复制一次。<br>栈区：保存局部变量的值，包括：<br>     1.用来保存基本数据类型的值；<br>     2.保存类的实例，即堆区对象的引用(指针)。<br>       也可以用来保存加载方法时的帧<br>常量池：JVM为每个已加载的类型维护一个常量池，<br>        常量池就是这个类型用到的常量的一个有序集合。<br>    常量池存在于堆中。<br>PC寄存器：指向下一条需要执行的指令，将该数据传递给CPU</p>
+    //调用使年龄增加的方法并输出增加后的年龄
+    t.increaseAge();
+    System.out.println(&quot;new age=&quot; + t.age);
+}
+</code></pre><p>}</p>
 
       
     </div>
@@ -1054,7 +1090,7 @@ System.out.println(f4);           //打印Infinity
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -1081,7 +1117,7 @@ System.out.println(f4);           //打印Infinity
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

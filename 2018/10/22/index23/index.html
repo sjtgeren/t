@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="Map保存键值对的数据。key是唯一的。如保存是否打开音效，是否打开振动，当前分数，历史最高分，关数。。。 一：Map类中的方法：HashMap,Hashtableput(Object key,Object value):添加数据到map集合中Set keySet():将map中所有的key取出来放在set集合中Object get(Object key):从map集合中获取数据。Set entr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-22T11:25:29.591Z">
+<meta property="og:updated_time" content="2018-10-30T12:11:37.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十三天笔记">
 <meta name="twitter:description" content="Map保存键值对的数据。key是唯一的。如保存是否打开音效，是否打开振动，当前分数，历史最高分，关数。。。 一：Map类中的方法：HashMap,Hashtableput(Object key,Object value):添加数据到map集合中Set keySet():将map中所有的key取出来放在set集合中Object get(Object key):从map集合中获取数据。Set entr">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-22T19:25:29+08:00">
-                2018-10-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:11:37+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,620字
+                  2,504字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6分钟
+                  11分钟
                 </span>
               
             </div>
@@ -497,7 +497,51 @@
      eg:
      public &lt;T&gt;void print(T t){
     System.out.println(&quot;hello&quot;);}
-</code></pre>
+</code></pre><p>package com.briup.ch23;<br>public class Student implements Comparable<br>{<br>    private String name;<br>    private int age;<br>    public Student(){<br>    }<br>    public Student(String name,int age){<br>    this.name=name;<br>    this.age=age;<br>    }<br>    public void setName(String name){<br>    this.name=name;<br>    }<br>    public String getName(){<br>     return name;<br>    }<br>    public void setAge(int age){<br>      this.age=age;<br>    }<br>    public int getAge(){<br>     return age;<br>    }<br>    @Override<br>    public boolean equals(Object obj){<br>     if(obj==null)<br>         return false;<br>     if(obj==this)<br>         return true;<br>     if(!obj.getClass().equals(this.getClass()))<br>         return false;<br>     if(obj instanceof Student){<br>       Student stu=(Student)obj;<br>       if(stu.getAge()==this.getAge()&amp;&amp;<br>           stu.getName().equals(this.getName()))<br>           return true;</p>
+<pre><code> }
+ return false;
+}
+@Override
+public int hashCode(){
+  //return 1;//这种虽然能够让equals方法生效，但是这种方式相当于之后存的对象就需要和之前已存的对象都要进行比较，效率会很低
+  return name.hashCode()+age;
+}
+//自定义排序规则
+</code></pre><p>  @Override<br>   public int compareTo(Object obj){<br>    if(obj instanceof Student){<br>      Student stu=(Student)obj;<br>       if(stu.getAge()==this.getAge())<br>           return this.getName().compareTo(stu.getName());<br>        return this.getAge()-stu.getAge();<br>    }<br>    return 0;<br>   }<br>    @Override<br>    public String toString(){<br>    return “name=”+name+”,age=”+age;<br>    }<br>}</p>
+<p>package com.briup.ch23;<br>import java.util.<em>;<br>public class MapTest<br>{<br>  public static void main(String… args){<br>    Map map=//new HashMap();<br>            //new Hashtable();<br>            new TreeMap(/</em>new Comparator(){<br>            @Override<br>            public int compare(Object o1,Object o2){<br>              Student stu1=(Student)o1;<br>              Student stu2=(Student)o2;<br>              //return stu1.getName().compareTo(stu2.getName());<br>              return stu2.getName().compareTo(stu1.getName());<br>            }<br>            }<em>/);<br>     //map.put(1,”hello”);//key可以是任意类型<br>    // map.put(2,true);<br>    /</em> map.put(“aa”,20);<br>     map.put(“cc”,”world”);<br>      map.put(“bb”,”ff”);<br>       map.put(“dd”,”ww”);<em>/<br>    // map.remove(“bb”);//删除<br>     //System.out.println(map.get(2));//查询<br>     //map.put(2,false);<br>      //System.out.println(map.get(2));//查询<br>      //System.out.println(map.size());//数据个数<br>      //System.out.println(map.get(3));//如果不存在key值则value为null<br>       //out1(map);<br>       //out2(map);<br>      /</em> map.put(new Student(“bb”,20),”哈哈1”);<br>       map.put(new Student(“aa”,20),”true”);<br>       map.put(new Student(“dd”,20),”哈哈1”);*/</p>
+<pre><code> //map.put(new Student(&quot;aa&quot;,18),10);
+
+//out1(map);
+ //out3(map);
+ List list=new ArrayList();
+ list.add(&quot;aa&quot;);
+ list.add(&quot;bbb&quot;);
+ list.add(true);
+ //工具类
+ Collections.swap(list,0,2);
+ for(Object obj:list){
+ System.out.println(obj);
+ }
+</code></pre><p>  }<br>  //第一种遍历<br>  public static void out1(Map map){<br>      Set keys=map.keySet();//获取key的集合<br>      /<em>Iterator iter=keys.iterator();<br>      while(iter.hasNext()){<br>       Object key=iter.next();<br>       Object value=map.get(key);<br>       System.out.println(key+”:”+value);<br>      }</em>/<br>      for(Object key:keys){<br>         Object value=map.get(key);<br>         System.out.println(key+”:”+value);<br>      }<br>  }<br>  //第二种遍历<br>  //Set entrySet():将map集合中的key和对应的value取出来创建一个新的对象，然后把这个新的对象放到set集合中，这个对象就是Map.Entry对象<br>  //Map.Entry对象维护的是key和对应的value<br>public static void out2(Map map){<br>  Set set= map.entrySet();<br>   /<em>Iterator iter=set.iterator();<br>   while(iter.hasNext()){<br>     Object obj=iter.next();<br>      Map.Entry entry=(Map.Entry)obj;<br>      System.out.print(“key:”+entry.getKey());<br>      System.out.print(“value:”+entry.getValue());<br>   }</em>/<br>   for(Object obj:set){<br>     Map.Entry entry=(Map.Entry)obj;<br>      System.out.print(“key:”+entry.getKey()+” “);<br>      System.out.print(“value:”+entry.getValue());<br>      System.out.println();<br>   }<br>}<br>//第三种遍历<br>//Collection values():取出map中所有的value值，将他们放入到Collection集合中，不能够根据key值获取value值了<br>public static void out3(Map map){<br>   Collection coll=map.values();<br>   /<em>for(Iterator iterator=coll.iterator();iterator.hasNext();){<br>   System.out.println(iterator.next());<br>   }</em>/<br>   for(Object obj:coll){<br>   System.out.println(obj);<br>   }<br>}<br>}</p>
+<p>package com.briup.ch23;<br>import java.util.*;<br>public class Test<br>{<br>    public static void main(String… args){<br>    List<string> list=new ArrayList<string>();<br>    list.add(“aa”);<br>    list.add(“bb”);<br>    }<br>}</string></string></p>
+<p>练习：</p>
+<p>1.使用Properties从外界获取传进的数据。</p>
+<p>2.通过反射实例化User对象.</p>
+<p>   class User{</p>
+<p>​    private int id;//id号</p>
+<p>​    private String name; //用户名</p>
+<p>​    private String password;//密码</p>
+<p>​    //构造器和相应的set,get方法</p>
+<p>​    public boolean checkName(String name){//实现代码}</p>
+<p>​    public User getName(String name){//实现代码}</p>
+<p>   }</p>
+<p>  a)查询API查询该User对象包含哪些属性，属性的名字，访问修饰符等信息。</p>
+<p>   修改某个属性的值，获取某个属性的值。</p>
+<p>  b)查询API查询该User对象包含哪些方法，方法的名字，访问修饰符等信息。</p>
+<p>   通过反射调用某个方法。</p>
+<p>  c)查询API查询该User对象包含哪些构造器，构造器的名字，访问修饰符等信息。</p>
+<p>   通过反射调用构造器。</p>
+
       
     </div>
     
@@ -696,7 +740,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -723,7 +767,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         

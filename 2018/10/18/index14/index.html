@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="八. 创建和初始化对象(new)Person p=new Person();public class Person{    private String name=”briup”;}  1)在栈区开辟空间保存对象的引用  2)在堆区开辟空间保存对象本身的数据  3)堆区的地址赋值给栈区的对象的引用  4)为对象的属性进行默认初始化(系统完成)  5)为对象的属性进行显示初始化，比如人的最大年龄10">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T11:24:05.920Z">
+<meta property="og:updated_time" content="2018-10-30T11:54:56.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第十四天笔记">
 <meta name="twitter:description" content="八. 创建和初始化对象(new)Person p=new Person();public class Person{    private String name=”briup”;}  1)在栈区开辟空间保存对象的引用  2)在堆区开辟空间保存对象本身的数据  3)堆区的地址赋值给栈区的对象的引用  4)为对象的属性进行默认初始化(系统完成)  5)为对象的属性进行显示初始化，比如人的最大年龄10">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-18T19:24:05+08:00">
-                2018-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T19:54:56+08:00">
+                2018-10-30
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  799字
+                  1,958字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  9分钟
                 </span>
               
             </div>
@@ -469,6 +469,120 @@
 <p>九. 构造方法<br>    构造器：根据用户的需求传入数据,<br>            然后根据传入数据进行属性的初始化。<br>       作用：为属性进行初始化<br>    1）方法名和类名相同<br>    2）没有返回值类型<br>    3）构造的重载(根据不同的情况调用不同的构造器进行相应的初始化)<br>        调用本类的构造器:this(参数列表)<br>    4)系统会提供一个无参的构造器，<br> 但是如果本类实现了其他的构造器，系统提供的无参构造器失效。<br>public class Test{<br>  public Test(){}<br>  public void Test(){} //普通的方法<br>}<br>一：继承<br>好处：代码复用，简化编程<br>代码复用用在哪些地方：<br>   1)复用父类的属性<br>   2)复用父类的方法(直接调用父类的方法)<br>   3)重写父类的方法<br>实现：class 子类 extends 父类<br>     单继承<br>关系：子类 is a 父类  或者 子类is a like 父类<br>     class Student extends Person<br>      student is a Person<br>      Person is a Student（error）<br>子类继承父类哪些：<br>    1）构造器不能继承<br>    2）方法和属性全部继承</p>
 <p>继承注意的问题：<br>   1)创建一个子类对象必须先创建一个父类对象<br>   2)子类的构造器会默认调用父类的无参构造器<br>       super();<br>   3)父类的无参构造器失效，<br>   子类构造器就需要显式的调用父类存在的其他构造器<br>       super(参数列表); 必须放在构造器的第一行<br>   4)当一个子类继承了一个父类后，<br>    父类中所有的字段和方法都被子类继承拥有，<br>    子类可以任意的支配使用，<br>    每个子类对象中都拥有了父类中的所有字段。<br>    当构造一个子类的实例对象时，<br>    该对象的实例变量包括了子类本身以及父类中的所有实例变量，<br>    实例方法也包括了子类和父类中的所有实例方法。<br>    子类构造器用来初始化子类中所有的实例变量，<br>    而父类构造器super(实参)用来初始化父类中所有的实例变量。<br>    那么在堆中为子类实例对象分配的内存区域中<br>    包括了子类和父类中所有初始化后的实例变量。<br>   5)在构造器同时出现this和super:不能够。</p>
 <p>二：super代表父类对象<br>    this代表当前对象<br> 1)调用父类的属性(很少用)<br>     super.name=name;<br> 2)调用父类的构造器<br>    super(参数列表);<br> 3）调用父类的方法(子类中包含和父类相同的方法名)<br>    super.方法名(参数列表);</p>
+<p>package com.briup.ch14;<br>public class OverloadTest<br>{<br>    String s;<br>    int a;<br>    //无参构造器，如果没有有参构造器，系统会默认创建,构造器是不能被当成方法调用<br>    public  OverloadTest(){<br>     this(“张三”);<br>    }<br>    public  OverloadTest(String s){<br>        this(s,10);<br>     //this.s=s;</p>
+<pre><code>}
+public OverloadTest(String s,int a){
+this.s=s;
+this.a=a;
+}
+public void setS(String s){
+this.s=s;
+}
+public String getS(){
+   return s;
+}
+public void setA(int a){
+this.a=a;
+}
+public int getA(){
+  return a;
+}
+public static void main(String... args){
+     OverloadTest ot=new OverloadTest();
+       System.out.println(ot.getS());
+       System.out.println(ot.getA());
+     //ot.add(&quot;哈哈&quot;,5,4);
+     //System.out.println(ot.add(&quot;讲解&quot;,4));
+     //ot.OverloadTest();
+}
+public void add(String a,int b,int c){
+System.out.println(&quot;第一个:&quot;+a);
+}
+private int add(String a,int b){
+  return b;
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch14;<br>public class People<br>{<br>    private String name;<br>    private String gender;<br>    private int age;<br>    public People(){<br>      this(“李四”,”女”,20);<br>      System.out.println(“这是父类构造器”);<br>    }<br>    public People(String name,String gender,int age){<br>      this.name=name;<br>      this.gender=gender;<br>      this.age=age;<br>    }<br>    public void setName(String name){<br>    this.name=name;<br>    }<br>    public String getName(){<br>    return name;<br>    }<br>    public void setGender(String gender){<br>     this.gender=gender;<br>    }<br>    public String getGender(){<br>    return gender;<br>    }<br>    public void setAge(int age){<br>    this.age=age;<br>    }<br>    public int getAge(){<br>     return age;<br>    }<br>    public void display(){<br>    System.out.println(name);<br>    System.out.println(gender);<br>    System.out.println(age);<br>    }<br>}</p>
+<p>package com.briup.ch14;<br>public class Student extends People<br>{<br>        /<em>private String name;<br>    private String gender;<br>    private int age;</em>/<br>    private int score=90;<br>    public Student(){<br>      //this(“王五”,”男”,20,80);<br>      //setName(“赵四”);<br>      System.out.println(“这是子类构造器”);<br>    }<br>    public Student(String name,String gender,int age,int score){<br>      /<em>this.name=name;<br>      this.gender=gender;<br>      this.age=age;</em>/<br>      this.score=score;<br>    }<br>    public void setScore(int score){<br>    this.score=score;<br>    }<br>    public int getScore(){<br>     return score;<br>    }<br>    /<em>public void setName(String name){<br>    this.name=name;<br>    }<br>    public String getName(){<br>    return name;<br>    }<br>    public void setGender(String gender){<br>     this.gender=gender;<br>    }<br>    public String getGender(){<br>    return gender;<br>    }<br>    public void setAge(int age){<br>    this.age=age;<br>    }<br>    public int getAge(){<br>     return age;<br>    }</em>/<br>    public void display(){<br>    /<em>System.out.println(name);<br>    System.out.println(gender);<br>    System.out.println(age);</em>/</p>
+<pre><code>System.out.println(&quot;name=&quot;+getName());
+System.out.println(&quot;gender=&quot;+getGender());
+System.out.println(&quot;age=&quot;+getAge());
+System.out.println(score);
+}
+</code></pre><p>}</p>
+<p>package com.briup.ch14;<br>public class Test<br>{<br>    public static void main(String… args){<br>       /<em>People p=new People();<br>       p.display();</em>/<br>       Student s=new Student();<br>       s.display();<br>    }<br>}</p>
+<p>第五章：面向对象编程</p>
+<p>一）基础实验：</p>
+<p>1.完成Person.java,PersonTest.java完成面向对象编程的基本步骤。</p>
+<p>2.完成参数传递的例子.明白参数传递的两种方式</p>
+<p>  ParameterTest.java</p>
+<p>3.完成数据隐藏的例子</p>
+<p>  Person.java PersonTest.java</p>
+<p>4.完成构造器的例子</p>
+<p>  Person.java PersonTest.java</p>
+<p>5.完成Person.java,Student.java,Teacher.java，Test.java继承的例子。</p>
+<p>二）扩展实验：</p>
+<p>\1. 什么是构造器及其作用</p>
+<p>   构造器：根据用户的需求传入数据,</p>
+<p>​            然后根据传入数据进行属性的初始化。</p>
+<p>​       作用：为属性进行初始化</p>
+<p>​    1）方法名和类名相同</p>
+<p>​    2）没有返回值类型</p>
+<p>​    3）构造的重载(根据不同的情况调用不同的构造器进行相应的初始化)</p>
+<p>​        调用本类的构造器:this(参数列表)</p>
+<p>​    4)系统会提供一个无参的构造器，</p>
+<p> 但是如果本类实现了其他的构造器，系统提供的无参构造器失效。</p>
+<p>\2. 方法重载有什么特点？定义几个重载方法和非重载方法？</p>
+<p>​    1.方法的重载必须在本类</p>
+<p>​    2.方法名字必须相同</p>
+<p>​    3.参数列表必须不同</p>
+<p>​        参数的数据类型不同||</p>
+<p>​    参数的顺序不同||</p>
+<p>​    参数的个数不同 </p>
+<p>​    4.返回值可以不同</p>
+<p>​    5.抛出异常可以不同</p>
+<p>​    6.修饰符可以不同</p>
+<p>3.this的作用？</p>
+<p>   this 代表当前对象</p>
+<p>​     this用法:</p>
+<p>​      a)this一般用在实例变量上</p>
+<p>​        用来区分实例变量和局部变量</p>
+<p>​    实例变量和局部变量相同名字的时候</p>
+<p>​     this.name=name; 如果没有this，会执行就近原则，指代的就会是形参</p>
+<p>​      b)this用在调用本类方法(不常用),系统会默认添加上去 this.setName(“”);</p>
+<p>​      c)this调用本类构造器</p>
+<p>\4. 子类继承了父类哪些东西，哪些东西不被继承？继承的关系？</p>
+<p>​    a)子类继承父类的属性和方法，还可以扩展自己的属性和方法</p>
+<p>​    b)子类不能够继承父类构造器</p>
+<p>\5. 编程：完成所有的exercise文件中的编程作业</p>
+<p> package ex.md05;</p>
+<p>public class Test<br>{<br>    public static void main(String[] args)<br>    {<br>        Stack stack = new Stack();<br>        //stack.pop();<br>        for(int i=1; i&lt;=200; i++){<br>            stack.push(i);<br>        }<br>        for(int i=1; i&lt;=100; i++){<br>            System.out.println(“pop:” + stack.pop());<br>        }<br>        for(int i=201; i&lt;=300; i++){<br>            stack.push(i);<br>        }<br>        for(int i=1; i&lt;=200; i++){<br>            System.out.println(“pop:” + stack.pop());<br>        }</p>
+<pre><code>    Queue queue = new Queue();
+    //queue.out();
+    for(int i=1; i&lt;=200; i++){
+        queue.in(i);
+    }
+    for(int i=1; i&lt;=100; i++){
+        System.out.println(&quot;out:&quot; + queue.out());
+    }
+    for(int i=201; i&lt;=300; i++){
+        queue.in(i);
+    }
+    for(int i=1; i&lt;=200; i++){
+        System.out.println(&quot;out:&quot; + queue.out());
+    }
+}
+</code></pre><p>}</p>
+<p>package ex.md05;</p>
+<p>public class Driver {<br>    public static void main(String[] args) {<br>        Track myTrack = new Track();<br>        myTrack.setTitle(“Watching The Wheels”);</p>
+<pre><code>    //Duration myDuration = new Duration(234);
+    Duration myDuration = new Duration(0, 3, 48);
+    myTrack.setDuration(myDuration);
+    System.out.println(&quot;myTrack is: &quot; + myTrack);        
+    System.out.println(&quot;Title = &quot; + myTrack.getTitle());
+    System.out.println(&quot;Duration = &quot; + myTrack.getDuration().toString());
+}
+</code></pre><p>}</p>
 
       
     </div>
@@ -668,7 +782,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 
@@ -695,7 +809,7 @@
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">35.4k</span> 字
+      博客全站共： <span class="post-count">52.5k</span> 字
     </span>
 </div>
         
