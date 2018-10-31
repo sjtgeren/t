@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-30T12:18:19.682Z">
+<meta property="og:updated_time" content="2018-10-31T07:12:42.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第二十九天笔记">
 <meta name="twitter:description" content="一:线程互斥   并发访问的线程加上同步锁之后就称为线程互斥。   谁抢到了对象锁的线程就先执行。   没有抢到对象锁的线程就等待对象锁。   加同步锁，加在共享对象上。   每一个对象都有唯一的一把锁。   lock对象锁—-&amp;gt;执行代码——&amp;gt;unlock对象锁 synchronized(共享区){临界区}共享区：多线程同时操作同一个对象临界区：多线程对共享区进行操作的代码区synch">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-30T20:18:19+08:00">
-                2018-10-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-31T15:12:42+08:00">
+                2018-10-31
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,540字
+                  1,881字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7分钟
+                  9分钟
                 </span>
               
             </div>
@@ -526,6 +526,99 @@ try {
 balance=temp;
 return amt;
 </code></pre><p>}<br>}</p>
+<p>二：写MyQueue类，实现线程安全的队列</p>
+<p>提示：队列中存储Object类型的数据，操作逻辑为先进先出</p>
+<p>public class MyQueue {</p>
+<p>public static ArrayList data=new ArrayList();</p>
+<p>public MyQueue(){</p>
+<p>}</p>
+<p>public void in(Object o){</p>
+<p>​    data.add(o);</p>
+<p>}</p>
+<p>public Object out(Object i){</p>
+<p>​    int size=data.size();</p>
+<p>​    System.out.println(“取:”+i);</p>
+<p>​    if(size&gt;0)</p>
+<p>​        return data.remove(i);</p>
+<p>​    else </p>
+<p>​        return null;</p>
+<p>}</p>
+<p>public int getSize(){</p>
+<p>​    return data.size();</p>
+<p>}</p>
+<p>}</p>
+<p>创建线程类InsertThread用于将数据写入队列中</p>
+<p>创建线程类ReadThread用于从队列中读取数据并输出</p>
+<p>写MyQueueTest类，创建多个线程对MyQueue类进行测试</p>
+<p>public class MyQueueTest {</p>
+<p>​    public static boolean flag = false;</p>
+<p>​    public static void main(String[] args) throws InterruptedException {</p>
+<p>​         MyQueue myQueue = new MyQueue();</p>
+<p>​        InsertThread insum = new InsertThread(“插入”,myQueue);</p>
+<p>​        ReadThread outsum =new ReadThread(“取出”,myQueue);</p>
+<p>​        </p>
+<p>​        insum.start();</p>
+<p>​        // insum.setPriority(10);//优先级，建议性提高抢到线程</p>
+<p>​        outsum.start();</p>
+<p>​        // outsum.join();//和优先级一样都是提高抢到线程频率</p>
+<p>​        // outsum.setPriority(1);</p>
+<p>​    }</p>
+<p>​    </p>
+<p>}</p>
+<p>class Num {</p>
+<p>}</p>
+<p>class InsertThread extends Thread {</p>
+<p>​    private  MyQueue myQueue;;</p>
+<p>​    public InsertThread(String name,MyQueue myQueue){</p>
+<p>​        super(name);</p>
+<p>​        this.myQueue=myQueue;</p>
+<p>​    }</p>
+<p>​    @Override</p>
+<p>​    public void run() {</p>
+<p>​        while(!MyQueueTest.flag){</p>
+<p>​            try {</p>
+<p>​                Thread.sleep(1000);</p>
+<p>​            } catch (InterruptedException e) {</p>
+<p>​                // TODO Auto-generated catch block</p>
+<p>​                e.printStackTrace();</p>
+<p>​            }</p>
+<p>​        }</p>
+<p>​            synchronized (Num.class) {</p>
+<p>​                for (int i = 0; i &lt; 5; i++) {</p>
+<p>​                    System.out.print(“存:” + i + “ “);</p>
+<p>​                    myQueue.in(i);</p>
+<p>​                }</p>
+<p>​                System.out.println();</p>
+<p>​                Num.class.notifyAll();</p>
+<p>​        }</p>
+<p>​    }</p>
+<p>}</p>
+<p>class ReadThread extends Thread {</p>
+<p>​    private  MyQueue myQueue;;</p>
+<p>​    public ReadThread(String name,MyQueue myQueue){</p>
+<p>​        super(name);</p>
+<p>​        this.myQueue=myQueue;</p>
+<p>​    }</p>
+<p>​    @Override</p>
+<p>​    public void run() {</p>
+<p>​            synchronized (Num.class) {</p>
+<p>​                if (myQueue.data.size() == 0) {</p>
+<p>​                    try {</p>
+<p>​                        System.out.println(“空集合,你先存吧”);</p>
+<p>​                        MyQueueTest.flag=true;</p>
+<p>​                        Num.class.wait();</p>
+<p>​                    } catch (InterruptedException e) {</p>
+<p>​                        // TODO Auto-generated catch block</p>
+<p>​                        e.printStackTrace();</p>
+<p>​                    }</p>
+<p>​                    for (int i = 0; i &lt; 5; i++) {</p>
+<p>​                        myQueue.out(i);</p>
+<p>​                        </p>
+<p>​                    }</p>
+<p>​                } </p>
+<p>​        }</p>
+<p>​    }</p>
+<p>}</p>
 
       
     </div>
@@ -592,6 +685,10 @@ return amt;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/31/index30/" rel="prev" title="java第三十天笔记">
+                java第三十天笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -664,7 +761,7 @@ return amt;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -721,7 +818,7 @@ return amt;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.5k</span>
+    <span title="Site words total count">54.9k</span>
   
 </div>
 
@@ -748,7 +845,7 @@ return amt;
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">52.5k</span> 字
+      博客全站共： <span class="post-count">54.9k</span> 字
     </span>
 </div>
         
