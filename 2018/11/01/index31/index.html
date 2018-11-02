@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
 <meta property="og:description" content="e)ObjectInputStream和ObjectOutputStream   针对于类类型的数据(对象)进行操作。  序列化：将对象保存到文件中或者传输到网络的过程  反序列化：将文件中或者网络中将对象读取到程序的过程  进行序列化或者反序列化的类必须实现Serializable接口。  该接口是一个空接口，只是起到了标识的作用，  标识该对象可以进行序列化和反序列化操作。  serialVe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-01T06:15:44.432Z">
+<meta property="og:updated_time" content="2018-11-02T08:43:12.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第三十一天笔记">
 <meta name="twitter:description" content="e)ObjectInputStream和ObjectOutputStream   针对于类类型的数据(对象)进行操作。  序列化：将对象保存到文件中或者传输到网络的过程  反序列化：将文件中或者网络中将对象读取到程序的过程  进行序列化或者反序列化的类必须实现Serializable接口。  该接口是一个空接口，只是起到了标识的作用，  标识该对象可以进行序列化和反序列化操作。  serialVe">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-01T14:15:44+08:00">
-                2018-11-01
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-02T16:43:12+08:00">
+                2018-11-02
               </time>
             
           </span>
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,783字
+                  2,080字
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9分钟
+                  11分钟
                 </span>
               
             </div>
@@ -546,6 +546,91 @@
 private static final long serialVersionUID = 1L;
 </code></pre><p>private int id;<br>private String name;<br>//transient具有加密功能<br>private transient double salary;<br>public Employee(int id,String name,double salary){<br>    this.id=id;<br>    this.name=name;<br>    this.salary=salary;<br>}<br>public void setId(int id){<br>    this.id=id;<br>}<br>public int getId(){<br>    return id;<br>}<br>public void setName(String name){<br>    this.name=name;<br>}<br>public String getName(){<br>    return name;</p>
 <p>}<br>public void setSalary(double salary){<br>    this.salary=salary;<br>}<br>public double getSalary(){<br>    return salary;<br>}<br>@Override<br>public String toString(){<br>    return “id=”+id+”;name=”+name+”;salary=”+salary;<br>}<br>}</p>
+<p>写Copy类</p>
+<p>要求：将1个文件的内容同时复制到多个文件</p>
+<p>import java.io.File;</p>
+<p>import java.io.FileInputStream;</p>
+<p>import java.io.FileOutputStream;</p>
+<p>import java.io.IOException;</p>
+<p>public class CopyTest {</p>
+<p>public static void main(String[] args) {</p>
+<p>​    File file1=new File(“src/file1.txt”);</p>
+<p>​    File file2=new File(“src/file2.txt”);</p>
+<p>​    File file3=new File(“src/file3.txt”);</p>
+<p>​    File file4=new File(“src/file4.txt”);</p>
+<p>​    try {</p>
+<p>​        file1.createNewFile();</p>
+<p>​        file2.createNewFile();</p>
+<p>​        file3.createNewFile();</p>
+<p>​        file4.createNewFile();</p>
+<p>​        CopyFile cf=new CopyFile();</p>
+<p>​        cf.show(file1, file2);</p>
+<p>​        cf.show(file1, file3);</p>
+<p>​        cf.show(file1, file4);</p>
+<p>​        </p>
+<p>​    } catch (IOException e) {</p>
+<p>​        // TODO Auto-generated catch block</p>
+<p>​        e.printStackTrace();</p>
+<p>​    }</p>
+<p>}</p>
+<p>}</p>
+<p>class CopyFile{</p>
+<p>​    public void show(File file1,File file2){</p>
+<p>​        FileInputStream in=null;</p>
+<p>​        FileOutputStream out=null;</p>
+<p>​        try {</p>
+<p>​            in=new FileInputStream(file1);</p>
+<p>​            out=new FileOutputStream(file2,false);</p>
+<p>​            int len=-1;</p>
+<p>​            while ((len=in.read())!=-1) {</p>
+<p>​                out.write(len);</p>
+<p>​                out.flush();</p>
+<p>​            }</p>
+<p>​        } catch (Exception e) {</p>
+<p>​            // TODO Auto-generated catch block</p>
+<p>​            e.printStackTrace();</p>
+<p>​        }</p>
+<p>​    }</p>
+<p>}</p>
+<p>写PropertiesFile类</p>
+<p>要求：</p>
+<p>在message文件中存放prop_name=prop_value格式的属性，每行存放一个属性。</p>
+<p>从命令行输入一个属性名，找出其对应的属性值并输出。</p>
+<p>public class PropertiesFile {</p>
+<p>public static void main(String[] args) {</p>
+<p>​    FileReader fr=null;</p>
+<p>​    BufferedReader br=null;</p>
+<p>​    try {</p>
+<p>​        fr=new FileReader(new File(“src/message”));</p>
+<p>​        br=new BufferedReader(fr);</p>
+<p>​        String len=””;</p>
+<p>​        Scanner sc=new Scanner(System.in);</p>
+<p>​        String str=sc.next();</p>
+<p>​        while ((len=br.readLine())!=null) {</p>
+<p>​            String[] strs=len.split(“=”);</p>
+<p>​            if (str.equals(strs[0])) {</p>
+<p>​                System.out.println(strs[1]);</p>
+<p>​            }</p>
+<p>​        }</p>
+<p>​    } catch (Exception e) {</p>
+<p>​        // TODO Auto-generated catch block</p>
+<p>​        e.printStackTrace();</p>
+<p>​    }finally{</p>
+<p>​        </p>
+<p>​            try {</p>
+<p>​                if(br!=null)</p>
+<p>​                    br.close();</p>
+<p>​                if(fr!=null)</p>
+<p>​                fr.close();</p>
+<p>​                </p>
+<p>​            } catch (IOException e) {</p>
+<p>​                // TODO Auto-generated catch block</p>
+<p>​                e.printStackTrace();</p>
+<p>​            }</p>
+<p>​        </p>
+<p>​    }</p>
+<p>}</p>
+<p>}</p>
 
       
     </div>
@@ -612,6 +697,10 @@ private static final long serialVersionUID = 1L;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/02/index32/" rel="prev" title="java第三十二天笔记">
+                java第三十二天笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -684,7 +773,7 @@ private static final long serialVersionUID = 1L;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -741,7 +830,7 @@ private static final long serialVersionUID = 1L;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">56.7k</span>
+    <span title="Site words total count">60.3k</span>
   
 </div>
 
@@ -768,7 +857,7 @@ private static final long serialVersionUID = 1L;
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">56.7k</span> 字
+      博客全站共： <span class="post-count">60.3k</span> 字
     </span>
 </div>
         
