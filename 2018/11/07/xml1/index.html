@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT,博客,git,学习，nodejs搭建Hexo博客,github,码云" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一  XML简单的历史介绍 1969年 GML   通用标记语言    用于计算机之间的通信,通信就会传输数据,那么就需要一种数据的规范1985年 SGML  标准通用标记语言    对GML进行完善1993年 HTML  超文本的标记语言(HyperText Markup Language)    随着万维网的推广,在SGML的基础上,又出现了HTML语言,用于万维网上的页面展示1998年 XM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xml第一天笔记">
+<meta property="og:url" content="https://taogeren.gitee.io/2018/11/07/xml1/index.html">
+<meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
+<meta property="og:description" content="一  XML简单的历史介绍 1969年 GML   通用标记语言    用于计算机之间的通信,通信就会传输数据,那么就需要一种数据的规范1985年 SGML  标准通用标记语言    对GML进行完善1993年 HTML  超文本的标记语言(HyperText Markup Language)    随着万维网的推广,在SGML的基础上,又出现了HTML语言,用于万维网上的页面展示1998年 XM">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-07T14:24:52.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xml第一天笔记">
+<meta name="twitter:description" content="一  XML简单的历史介绍 1969年 GML   通用标记语言    用于计算机之间的通信,通信就会传输数据,那么就需要一种数据的规范1985年 SGML  标准通用标记语言    对GML进行完善1993年 HTML  超文本的标记语言(HyperText Markup Language)    随着万维网的推广,在SGML的基础上,又出现了HTML语言,用于万维网上的页面展示1998年 XM">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>xml第一天笔记 | Hexo很酷哦！--SHi JIAN TAO</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo很酷哦！--SHi JIAN TAO</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">石健涛博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-bookmarks">
+          <a href="/bookmarks" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa"></i> <br />
+            
+            书签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+<script>
+    
+    window.onload = function(){
+        var path = 'https://taogeren.gitee.io/'; //这里要改成你博客的地址
+        var localhostItem = String(window.location).split(path)[1];
+        var LiNode = document.querySelectorAll('#menu > li > a')
+        
+        for(var i = 0; i< LiNode.length;i++){
+            var item = String(LiNode[i].href).split(path)[1];
+            if(item == localhostItem && item != undefined){
+                LiNode[i].setAttribute('style','border-bottom:1px solid black');
+            }
+        }
+    };
+
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://taogeren.gitee.io/2018/11/07/xml1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="石健涛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo很酷哦！--SHi JIAN TAO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xml第一天笔记</h1>
+        
+
+        <div class="post-meta">
+		
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T22:24:13+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T22:24:52+08:00">
+                2018-11-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/07/xml1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://taogeren.gitee.io/2018/11/07/xml1/" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/07/xml1/" class="leancloud_visitors" data-flag-title="xml第一天笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,845字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一  XML简单的历史介绍</p>
+<p>1969年 GML   通用标记语言<br>    用于计算机之间的通信,通信就会传输数据,那么就需要一种数据的规范<br>1985年 SGML  标准通用标记语言<br>    对GML进行完善<br>1993年 HTML  超文本的标记语言(HyperText Markup Language)<br>    随着万维网的推广,在SGML的基础上,又出现了HTML语言,用于万维网上的页面展示<br>1998年 XML   可扩展的标记语言(Extensible Markup Language)<br>    HTML有不少的缺陷,HTML语言的标记不能自定义,HTML语言的标记本身不能用来描述数据,HTML语言的标记没有国际化(不同浏览器显示同一页面的效果可能不一样)<br>    W3C组织在1998年推出了可扩展标记语言XML<br>    XML语言的本身是用来替代HTML语言的,但是俩种语言还有一定差异的,所以中间出现了一种过渡的语言:XHTML<br>    但实际上XML语言已经很难替代HTML语言了,因为HTML语言的使用在整个万维网上使用太广泛了。</p>
+<p>3.1　什么是良构<br>良构是一个来自XML的概念。从技术角度而言，它表示文档遵循某种严格的约束，比如每个起始标签都应该有一个匹配的结束标签、元素的开始和结束都在相同的父元素内以及每个实体引用也是事先定义好的。</p>
+<p>第3章 良构<br>把标记转换成符合现代标准的首要任务是实现良构。良构是强大XML工具链条中的基础性环节。良构保证了DOM可操作的文档树结构的唯一性，因而成为可靠的跨浏览器的JavaScript代码的基础。因此，最紧要的第一件事无疑是先实现页面良构化。<br>有效性（validity）尽管也重要，但没有良构紧迫，违反有效性通常也有合理的理由。事实上我常有意发布一些无效的页面。如果要用到一个元素，即使DTD不允许，我仍然会用。这不会产生什么破坏，因为浏览器对不认识的元素置之不理。如果我要在一个blockquote中放入没有被任何元素包裹的原始文本 ，不会产生什么破坏。又比如我要使用HTML 5中的元素（如m，Opera可以认出这个元素，但其他浏览器不能），此时其他浏览器会忽略它。但如果页面乱构，后果则要严重得多。<br>首先，我将不能使用任何XML工具（如XSLT或者SAX）来处理这个页面，只能做到的几乎就是在浏览器中查看它。对一个乱构的页面来说，任何可靠的自动化处理或测试都是非常难以保证的。</p>
+<p>二  XML有什么作用,为什么要学习XML<br>    第一个需求: 数据传输需要一定的格式<br>        1.数据的可读性<br>        2.将来的扩展<br>        3.将来的维护<br>    XML现在已经是业内传输数据的标准,它和语言无关</p>
+<pre><code>第二个需求: 配置文件,之前使用的.properties资源文件中描述的信息不丰富
+
+第三个需求: 保存数据,充当小型的数据库
+    保存者使用数据一般是使用数据库保存,或一般的文件保存,这个时候也可以选择XML文件,因为XML可以描述复杂的数据关系。从普通文件中读取数据的速度肯定是比从数据库中读取数据的速度快,只不过这样不是很安全而已
+</code></pre><p>三 语法<br>    1.文档声明<br>        XML文件的后缀为.xml<br>        XML文本要求文件有一个头部声明: 用来告诉解析器一些相关信息<br>        &lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>        表明当前文件是xml文件,XML版本为1.0,文件内容使用的字符编码为UTF-8<br>        注意:要小心在系统中这个xml文件保存时候的编码,是否和文件内容中设置的编码一致</p>
+<pre><code>    ansi (American National Standards Institute)美国国家标准协会
+    ansi编码 是这个协会组织制定的一种字符编码
+    ansi编码在不同国家表示是不用的 中文操作系统中的ansi编码是GB2312
+2.元素
+    2.1
+    每个XML文档必须有且只有一个根元素。root
+    根元素是一个完全包括文档中其他所有元素的元素。
+    根元素的起始标记要放在所有其他元素的起始标记之前。
+    根元素的结束标记要放在所有其他元素的结束标记之后。
+
+    2.2
+    xml文件中的标记也可以叫标签、元素、节点。
+    XML元素指XML文件中出现的标签，一个标签分为开始标签和结束标签，一个标签有如下几种书写形式，例如：
+    包含标签体：&lt;a&gt;www.baidu.com&lt;/a&gt;
+    不含标签体的：&lt;a&gt;&lt;/a&gt;, 可以简写为：&lt;a/&gt;
+    一个标签中也可以嵌套若干子标签。但所有标签必须合理的嵌套，绝对不允许交叉嵌套 ，例如：
+    &lt;a&gt;你好!&lt;b&gt;程序员&lt;/a&gt;&lt;/b&gt; 
+    这样嵌套是可以的
+    &lt;a&gt;你好!&lt;b&gt;程序员&lt;/b&gt;&lt;/a&gt;
+
+    2.3
+    对于XML标签中出现的所有空格和换行，XML解析程序都会当作标签内容进行处理。例如：下面两段内容的意义是不一样的。
+    &lt;name&gt;tom&lt;/name&gt;
+
+    &lt;name&gt;
+        tom
+    &lt;/name&gt;
+
+    由于在XML中，空格和换行都作为原始内容被处理，所以，在编写XML文件时，要特别注意。但是在一些封装好的解析方式中,是可以忽略掉这些空格和换行的.(例如在一些第三方提供的jar包中)
+
+    2.4
+    一个XML元素可以包含字母、数字以及其它一些可见字符，但必须遵守下面的一些规范
+    区分大小写，例如，&lt;P&gt;和&lt;p&gt;是两个不同的标记。
+    不能以数字或&quot;_&quot; (下划线)开头。
+    不能包含空格。
+
+
+
+3.属性
+    &lt;student id=&quot;100&quot;&gt;
+        &lt;name&gt;TOM&lt;/name&gt;
+    &lt;/student&gt;
+
+    属性值用双引号（&quot;）或单引号（&apos;）分隔
+    一个元素可以有多个属性，它的基本格式为：
+        &lt;元素名 属性名=&quot;属性值&quot;&gt;
+    特定的属性名称在同一个元素标记中只能出现一次
+    属性值不能包括&lt;, &gt;, &amp;
+
+4.实体 entity
+    xml文件中有些特殊的字符是不能直接表示出来的,例如:大于号,小于号,单引号、双引号等等 
+    使用实体的格式: &amp;实体名字;
+    预定义字符实体,由XML规范预先定义好了
+    &amp;lt;        &lt;
+    &amp;gt;        &gt;
+    &amp;amp;        &amp;
+    &amp;quot;        &quot;
+    &amp;apos;        &apos;
+
+    自定义实体 ENTITY entity
+    格式：
+    &lt;!DOCTYPE 根元素名称[
+        &lt;!ENTITY 实体名 实体内容&gt;
+    ]&gt;
+
+
+
+    eg:
+    &lt;!DOCTYPE courses[
+        &lt;!ENTITY company &quot;昆山杰普软件科技有限公司&quot;&gt;
+    ]&gt;
+    其中：company为实体名称
+              &quot;昆山杰普软件科技有限公司&quot;是实体内容
+          实体的使用：&amp;company;
+
+
+4.注释
+    &lt;!--这是一个注释--&gt;
+    注释内容中不要出现- -；
+    不要把注释放在标记中间；
+    &lt;Name &lt;!--the name--&gt; &gt; TOM &lt;/Name&gt;
+    注释不能嵌套；
+    可以在除标记以外的任何地方放注释
+
+5.PCDATA,CDATA
+    PCDATA (Parsed Character Data) 会被xml文档解析器解析的，但是有些特殊字符需要借助实体才可以被解析器解析。XML文件中的正常内容基本都是PCDATA
+
+    CDATA (Character Data) 不会被xml文档解析器解析的，按字符串原样输出。有些内容不想让解析,按照内容原样输出就可以了,这种情况可以使用CDATA
+    格式：&lt;![CDATA[需要原样输出的字符串]]&gt;
+          &lt;![CDATA[.....]]&gt;
+          &lt;&gt;
+          &lt;!&gt;
+          &lt;![]&gt;
+          &lt;![CDATA]&gt;
+          &lt;![CDATA[]]&gt;
+          &lt;![CDATA[......]]&gt;
+
+
+
+6.处理指令
+    处理指令，简称PI （processing instruction）。处理指令用来指挥解析引擎如何解析XML文档内容。
+
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</code></pre><p>四  XML命名空间 namespace<br>    XML 命名空间提供避免元素命名冲突的方法。<br>    在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。</p>
+<pre><code>例如:
+这个 XML 文档携带着某个表格中的信息：
+&lt;table&gt;
+   &lt;tr&gt;
+       &lt;td&gt;Apples&lt;/td&gt;
+       &lt;td&gt;Bananas&lt;/td&gt;
+   &lt;/tr&gt;
+&lt;/table&gt;
+这个 XML 文档携带有关桌子的信息（一件家具）：
+&lt;table&gt;
+   &lt;name&gt;茶几&lt;/name&gt;
+   &lt;width&gt;80&lt;/width&gt;
+   &lt;length&gt;120&lt;/length&gt;
+&lt;/table&gt;
+假如这两个 XML 文档被一起使用，由于两个文档都包含带有不同内容和定义的 &lt;table&gt; 元素，就会发生命名冲突。
+XML 解析器无法确定如何处理这类冲突。
+
+
+第一种解决方案:
+    使用前缀来避免命名冲突
+此文档带有某个表格中的信息：
+&lt;h:table&gt;
+   &lt;h:tr&gt;
+       &lt;h:td&gt;Apples&lt;/h:td&gt;
+       &lt;h:td&gt;Bananas&lt;/h:td&gt;
+   &lt;/h:tr&gt;
+&lt;/h:table&gt;
+此 XML 文档携带着有关一件家具的信息：
+&lt;f:table&gt;
+   &lt;f:name&gt;茶几&lt;/f:name&gt;
+   &lt;f:width&gt;80&lt;/f:width&gt;
+   &lt;f:length&gt;120&lt;/f:length&gt;
+&lt;/f:table&gt;
+
+现在，命名冲突不存在了，这是由于两个文档都使用了不同的名称来命名它们的 &lt;table&gt; 元素 (&lt;h:table&gt; 和 &lt;f:table&gt;)。
+通过使用前缀，我们创建了两种不同类型的 &lt;table&gt; 元素。
+
+第二种解决方案:
+使用命名空间（Namespaces）
+这个 XML 文档携带着某个表格中的信息：
+&lt;h:table xmlns:h=&quot;http://www.briup.com/h&quot;&gt;
+   &lt;h:tr&gt;
+   &lt;h:td&gt;Apples&lt;/h:td&gt;
+   &lt;h:td&gt;Bananas&lt;/h:td&gt;
+   &lt;/h:tr&gt;
+&lt;/h:table&gt;
+此 XML 文档携带着有关一件家具的信息：
+&lt;f:table xmlns:f=&quot;http://www.briup.com/f&quot;&gt;
+   &lt;f:name&gt;茶几&lt;/f:name&gt;
+   &lt;f:width&gt;80&lt;/f:width&gt;
+   &lt;f:length&gt;120&lt;/f:length&gt;
+&lt;/f:table&gt;
+与仅仅使用前缀不同，我们为 &lt;table&gt; 标签添加了一个 xmlns 属性，这样就为前缀赋予了一个与某个命名空间相关联的限定名称。
+
+
+XML Namespace (xmlns) 属性
+XML 命名空间属性被放置于元素的开始标签之中(一般都会在根元素中声明)，并使用以下的语法：
+xmlns:namespace-prefix=&quot;namespaceURI&quot;
+当命名空间被定义在元素的开始标签中时，所有带有相同前缀的子元素都会与同一个命名空间相关联。
+用于标示命名空间的地址不会被解析器用于查找信息。其惟一的作用是赋予命名空间一个惟一的名称
+
+
+默认的命名空间（Default Namespaces） 使用以下的语法:
+xmlns=&quot;namespaceURI&quot;
+为元素定义默认的命名空间可以让我们省去在所有的子元素中使用前缀的工作。
+这个 XML 文档携带着某个表格中的信息：
+&lt;table xmlns=&quot;http://www.briup.com&quot;&gt;
+   &lt;tr&gt;
+   &lt;td&gt;Apples&lt;/td&gt;
+   &lt;td&gt;Bananas&lt;/td&gt;
+   &lt;/tr&gt;
+&lt;/table&gt;
+此 XML 文档携带着有关一件家具的信息：
+&lt;table xmlns=&quot;http://www.baidu.com&quot;&gt;
+   &lt;name&gt;茶几&lt;/name&gt;
+   &lt;width&gt;80&lt;/width&gt;
+   &lt;length&gt;120&lt;/length&gt;
+&lt;/table&gt;
+</code></pre><p>五  XML约束<br>    在XML技术里，可以编写一个文档来约束一个XML文档的书写规范，这称之为XML约束。</p>
+<pre><code>需要XML约束的原因
+xml由于是可扩展的标记语言,所以在xml文件中的编写太过于自由,这样在很多种情况下并不合适。
+
+常用的约束技术
+XML DTD 
+    DTD文件的后缀名为 .dtd
+    DTD文件有自己独立的语法规范
+XML Schema
+    Schema文件的后缀名为 .xsd
+    Schema文件符合xml语法规范
+</code></pre><p>六  DTD Document Type Define<br>    DTD的定义：描述元素、属性和其他杂项在xml文档中的使用规则的说明</p>
+<pre><code>DTD的分类：外部的DTD 内部的DTD 混合的DTD
+    1).内部的DTD：DTD和xml文档在同一个文件中
+    例如:
+    student1.xml文件:
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!DOCTYPE students[
+        &lt;!ELEMENT students (stu+)&gt;
+        &lt;!ELEMENT stu (id,name,age)&gt;
+        &lt;!ELEMENT id   (#PCDATA)&gt;
+        &lt;!ELEMENT name (#PCDATA)&gt;
+        &lt;!ELEMENT age  (#PCDATA)&gt;
+    ]&gt;
+    &lt;students&gt;
+        &lt;stu&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;tom&lt;/name&gt;
+            &lt;age&gt;20&lt;/age&gt;
+        &lt;/stu&gt;
+    &lt;/students&gt;
+
+    2).外部的DTD：DTD和xml文档不在同一个文件中
+    例如:
+    xml/student2.xml文件
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!DOCTYPE students SYSTEM &quot;../dtd/student.dtd&quot;&gt;
+    &lt;students&gt;
+        &lt;stu&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;tom&lt;/name&gt;
+            &lt;age&gt;20&lt;/age&gt;
+        &lt;/stu&gt;
+    &lt;/students&gt;
+    dtd/student.dtd文件:
+    &lt;!ELEMENT students (stu+)&gt;
+    &lt;!ELEMENT stu (id,name,age)&gt;
+    &lt;!ELEMENT id   (#PCDATA)&gt;
+    &lt;!ELEMENT name (#PCDATA)&gt;
+    &lt;!ELEMENT age  (#PCDATA)&gt;
+
+    3).混合的DTD：既有外部DTD，又有内部DTD
+    例如:
+    xml/student3.xml文件
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!DOCTYPE students SYSTEM &quot;../dtd/student.dtd&quot;[
+        &lt;!ELEMENT stu (id,name,age)&gt;
+        &lt;!ELEMENT id   (#PCDATA)&gt;
+        &lt;!ELEMENT name (#PCDATA)&gt;
+        &lt;!ELEMENT age  (#PCDATA)&gt;
+    ]&gt;
+    &lt;students&gt;
+        &lt;stu&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;tom&lt;/name&gt;
+            &lt;age&gt;20&lt;/age&gt;
+        &lt;/stu&gt;
+    &lt;/students&gt;
+
+    dtd/student.dtd文件:
+    &lt;!ELEMENT students (stu+)&gt;
+
+
+外部的DTD
+    引用外部dtd的时候又分为俩种:
+    SYSTEM表示引用的dtd文件在本地 
+    例如:
+    &lt;!DOCTYPE students SYSTEM &quot;../dtd/student.dtd&quot;&gt;
+
+    PUBLIC表示引用的dtd文件是一个公共的文件
+    格式:注意里面是可以加回车换行的
+    &lt;!DOCTYPE 根元素 PUBLIC &quot;&quot; &quot;&quot;&gt;
+    例如:
+    &lt;!DOCTYPE hibernate-configuration PUBLIC
+      &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+      &quot;http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd&quot;&gt;
+
+    在后面的&quot;如何在Eclipse中给xml文件添加标签自动提示功能&quot;的部分再做说明
+
+
+DTD的目的：
+    验证该xml文档是否是有效的xml文档
+    如果一个良构的xml文档满足了DTD的声明就是一个有效的xml文档。
+    注意：良构 不一定  有效，但是有效一定良构
+
+
+DTD对xml文件中元素的约束：
+    格式：&lt;!ELEMENT  元素名 (内容模式)&gt;
+    内容模式：
+        1).EMPTY：元素不能包含子元素和文本（空元素）
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu)&gt;
+        &lt;!ELEMENT stu EMPTY&gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;!--这个stu元素中的内容必须为空--&gt;
+            &lt;stu&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+
+        2).(#PCDATA)：可以包含任何字符数据，但是不能在其中包含任何子元素
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu&gt;tom&lt;/stu&gt;
+        &lt;/students&gt;
+
+        3).ANY：元素内容为任意的，主要是使用在元素内容不确定的情况下
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu)&gt;
+        &lt;!ELEMENT stu ANY&gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu&gt;tom&lt;/stu&gt;
+        &lt;/students&gt;
+        或者
+        &lt;students&gt;
+            &lt;stu&gt;
+                &lt;name&gt;tom&lt;/name&gt;
+            &lt;/stu&gt;
+        &lt;/students&gt;
+
+
+        4).修饰符：() | + * ? , 默认修饰符
+        () 来给元素分用组 
+
+        |  在列出的元素中选择一个 
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu|student)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;!--这里只能出现stu元素或者student元素--&gt;
+                &lt;!--俩个元素任选其一,不能同时出现--&gt;
+            &lt;/students&gt;
+
+        +  该元素最少出现一次，可以出现多次 (1或n次)
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu+)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+            &lt;/students&gt;
+
+        *  该元素允许出现零次到任意多次（0到n次）
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu*)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;!--stu出现0次到n次--&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+            &lt;/students&gt;
+
+        ?  该元素可以出现，但只能出现一次 (0到1次)
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu?)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;!--stu出现0次到1次--&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+            &lt;/students&gt;
+
+        ,  对象必须按指定的顺序出现
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu*)&gt;
+            &lt;!ELEMENT stu (id,name,age)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;stu&gt;
+                    &lt;id&gt;&lt;/id&gt;
+                    &lt;name&gt;&lt;/name&gt;
+                    &lt;age&gt;&lt;/age&gt;
+                &lt;/stu&gt;
+            &lt;/students&gt;
+
+        默认修饰符 就是什么修饰符都没有加
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu)&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;!--这里只能出现stu元素1次--&gt;
+                &lt;!--stu元素不出现也验证不通过--&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+            &lt;/students&gt;
+
+
+        5).混合元素 子元素是任意类型 出现任意次数 并且没有出现顺序要求
+            例如:
+            dtd文件:
+            &lt;!ELEMENT students (stu*)&gt;
+            &lt;!ELEMENT stu (#PCDATA|id|name|age)*&gt;
+            xml文件:
+            &lt;students&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+                &lt;stu&gt;
+                    &lt;id&gt;&lt;/id&gt;
+                    &lt;name&gt;&lt;/name&gt;
+                    &lt;age&gt;&lt;/age&gt;
+                &lt;/stu&gt;
+                &lt;stu&gt;tom&lt;/stu&gt;
+            &lt;/students&gt;
+            注意:
+            1 根元素students里面可以出现stu子元素0到n次
+            2 stu元素中可以写文本也可以写id、name、age子元素
+            3 id、name、age子元素出现的顺序没有要求
+            4 id、name、age子元素可以都出现也可以都不出现
+
+
+    注意：浏览器是非验证的解析器，不会验证xml的有效性
+          可以使用Eclipse去验证xml的有效性
+</code></pre><p>​<br>    DTD对xml文件中属性的约束：<br>        格式：&lt;!ATTLIST 元素名称<br>                    属性名称    值类型    属性特点<br>                    属性名称    值类型    属性特点<br>              &gt;</p>
+<pre><code>属性类型：
+    1).CDATA：属性值可以是任何字符（包括数字和中文）
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                id   CDATA #REQUIRED
+                name CDATA #REQUIRED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu id=&quot;1&quot; name=&quot;tom&quot;&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+
+    2).ID：属性值必须唯一,属性值必须满足xml命名规则
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                id   ID    #REQUIRED
+                name CDATA #REQUIRED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu id=&quot;A1&quot; name=&quot;tom&quot;&gt;&lt;/stu&gt;
+            &lt;stu id=&quot;B1&quot; name=&quot;tom&quot;&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. id和name属性必须出现
+            2. id属性的值必须满足xml名字规范,例如不能数字开头
+            3. id属性的值不能重复
+            4. 多个属性的出现是没有顺序要求的
+
+    3).IDREF/IDREFS
+        IDREF属性的值指向文档中其它地方声明的ID类型的值。
+        IDREFS同IDREF，但是可以具有由空格分开的多个引用。
+
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                id   ID            #REQUIRED
+                pid  IDREFS     #IMPLIED
+                name CDATA        #REQUIRED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu id=&quot;A1&quot; name=&quot;tom&quot;&gt;&lt;/stu&gt;
+            &lt;stu id=&quot;B1&quot; name=&quot;tom&quot;&gt;&lt;/stu&gt;
+            &lt;stu id=&quot;C1&quot; name=&quot;tom&quot; pid=&quot;A1 B1&quot;&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. id和name属性必须出现
+            2. pid属性出现可以,不出现也可以
+            3. id属性的值必须满足xml名字规范,例如不能数字开头
+            4. id属性的值不能重复
+            5. pid属性的值必须是引用其他stu元素的id值
+            6. pid属性的值可以是多个,使用空格隔开
+            7. 多个属性的出现是没有顺序要求的
+
+    4).enumerated：(枚举值1|枚举值2|枚举值3...),属性值必须在枚举值中
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                id     ID            #REQUIRED
+                name   CDATA         #REQUIRED
+                gender (男|女)         #REQUIRED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu id=&quot;A1&quot; name=&quot;tom&quot; gender=&quot;男&quot;&gt;&lt;/stu&gt;
+            &lt;stu id=&quot;B1&quot; name=&quot;tom&quot; gender=&quot;女&quot;&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. id/name/gender属性必须出现
+            2. id属性的值必须满足xml名字规范,例如不能数字开头
+            3. id属性的值不能重复
+            4. gender属性的值必须是男或者女
+            5. 多个属性的出现是没有顺序要求的
+
+属性特点：
+    1).#REQUIRED：元素的所有实例都必须有该属性
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                name   CDATA   #REQUIRED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+            &lt;stu name=&quot;&quot;&gt;&lt;/stu&gt;
+            &lt;stu name=&quot;tom&quot;&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. name属性必须出现
+            2. name属性的值可以为空也可以不为空
+
+    2).#IMPLIED ：属性可以不出现
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                name   CDATA   #IMPLIED
+            &gt;
+        xml文件:
+        &lt;students&gt;
+                &lt;stu name=&quot;&quot;&gt;&lt;/stu&gt;
+                &lt;stu name=&quot;tom&quot;&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. name属性可以出现也可以不出现
+            2. name属性的值可以为空也可以不为空
+
+    3).default-value：属性可以不出现，并且当它不出现的时候是有默认值的，而该属性的默认值就是atttibute-value
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                name   CDATA   &quot;tom&quot;
+            &gt;
+        xml文件:
+        &lt;students&gt;
+                &lt;stu name=&quot;zhangsan&quot;&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. name属性可以出现也可以不出现
+            2. name属性如果不出现则默认值为tom
+
+    4).#FIXED ：属性可以不出现，但是如果出现的话必须是指定的属性值
+        例如:
+        dtd文件:
+        &lt;!ELEMENT students (stu*)&gt;
+        &lt;!ELEMENT stu (#PCDATA)&gt;
+            &lt;!ATTLIST stu 
+                name   CDATA   #IMPLIED
+                school CDATA   #FIXED &quot;briup&quot;
+            &gt;
+        xml文件:
+        &lt;students&gt;
+                &lt;stu school=&quot;briup&quot;&gt;&lt;/stu&gt;
+                &lt;stu&gt;&lt;/stu&gt;
+        &lt;/students&gt;
+        注意:
+            1. name/school属性可以出现也可以不出现
+            2. school属性如果出现那么值一定要是briup
+</code></pre><p>​<br>    DTD文档的一个实例：<br>        dtd文档:<br>        &lt;!ELEMENT students (student+)&gt;<br>        &lt;!ELEMENT student (name,age?,score*)&gt;<br>            &lt;!ATTLIST student id CDATA #REQUIRED&gt;<br>        &lt;!ELEMENT name (#PCDATA)&gt;<br>            &lt;!ATTLIST name firstName CDATA #IMPLIED&gt;<br>        &lt;!ELEMENT age (#PCDATA)&gt;<br>            &lt;!ATTLIST age xuAge CDATA #FIXED “20”&gt;<br>        &lt;!ELEMENT score (#PCDATA)&gt;<br>            &lt;!ATTLIST score sel (60|80|100) #REQUIRED&gt;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SHI JIAN TAO
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://taogeren.gitee.io/2018/11/07/xml1/" title="xml第一天笔记">https://taogeren.gitee.io/2018/11/07/xml1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">SHI JIAN TAO</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/07/unix3/" rel="next" title="unix第三天笔记">
+                <i class="fa fa-chevron-left"></i> unix第三天笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDQ3Ny8xNzAwNA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">石健涛</p>
+              <p class="site-description motion-element" itemprop="description">Hexo博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-true"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">石健涛</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">74.9k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <!-- 博客字数统计 -->
+    <span class="site-pv">
+      <i class="fa fa-pencil"></i>
+      博客全站共： <span class="post-count">74.9k</span> 字
+    </span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+  
+  <script src="//cdn.con.sh/raw/xCss/Valine/master/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: '3TNiM4UXMXiwLVMY7EStV0Ks-gzGzoHsz',
+        appKey: 'eUHT3R37GkRhcgvvf33WbLlx',
+        placeholder: 'ヾﾉ≧∀≦)o 来呀！快活呀！~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("BUA6GBI84KcbC6CV2ahemofU-gzGzoHsz", "LfIg9nV2xGL6biIojwbXJRE3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+  
+  <script src="/js/src/love.js"></script>
+</body>
+</html>

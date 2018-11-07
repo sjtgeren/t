@@ -114,17 +114,17 @@
 
 
 
-<meta name="description" content="package ChatClient;  import java.io.BufferedReader; import java.io.IOException; import java.io.InputStreamReader; import java.io.OutputStream; import java.io.OutputStreamWriter; import java.io.PrintW">
+<meta name="description" content="package ChatClient; import java.io.BufferedReader;import java.io.IOException;import java.io.InputStreamReader;import java.io.OutputStream;import java.io.OutputStreamWriter;import java.io.PrintWriter;i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java第三十四天笔记">
 <meta property="og:url" content="https://taogeren.gitee.io/2018/11/06/index34/index.html">
 <meta property="og:site_name" content="Hexo很酷哦！--SHi JIAN TAO">
-<meta property="og:description" content="package ChatClient;  import java.io.BufferedReader; import java.io.IOException; import java.io.InputStreamReader; import java.io.OutputStream; import java.io.OutputStreamWriter; import java.io.PrintW">
+<meta property="og:description" content="package ChatClient; import java.io.BufferedReader;import java.io.IOException;import java.io.InputStreamReader;import java.io.OutputStream;import java.io.OutputStreamWriter;import java.io.PrintWriter;i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T11:24:17.854Z">
+<meta property="og:updated_time" content="2018-11-07T14:18:06.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java第三十四天笔记">
-<meta name="twitter:description" content="package ChatClient;  import java.io.BufferedReader; import java.io.IOException; import java.io.InputStreamReader; import java.io.OutputStream; import java.io.OutputStreamWriter; import java.io.PrintW">
+<meta name="twitter:description" content="package ChatClient; import java.io.BufferedReader;import java.io.IOException;import java.io.InputStreamReader;import java.io.OutputStream;import java.io.OutputStreamWriter;import java.io.PrintWriter;i">
 
 
 
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T19:24:17+08:00">
-                2018-11-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T22:18:06+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -465,289 +465,215 @@
       
 
       
-        <pre>
-package ChatClient;
+        <p>package ChatClient;</p>
+<p>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.io.OutputStream;<br>import java.io.OutputStreamWriter;<br>import java.io.PrintWriter;<br>import java.net.<em>;<br>import java.nio.Buffer;<br>import java.util.</em>;</p>
+<p>public class ChatServer {<br>private ServerSocket server;<br>private Set<socket> clients=new HashSet<socket>();</socket></socket></p>
+<p>public static void main(String[] args) throws IOException {<br>    new ChatServer();<br>}<br>public ChatServer() throws IOException {</p>
+<pre><code>server =new ServerSocket(8888);
+System.out.println(&quot;服务器已经监听了端口……&quot;);
+while(true)
+{
+    Socket socket=server.accept();
+    clients.add(socket);
+    //获取Ip地址
+    String ip=socket.getInetAddress().getHostAddress();
+    System.out.println(&quot;有一个客户进来了，他的ip是：&quot;+ip);
+    //针对每个客户端，服务器都启动一个线程单独交流，将来将数据转发给所有的客户端
+    Thread thread=new Thread(new ServerRunnable(clients,socket));
+    thread.start();
+</code></pre><p>​<br>        }<br>}<br>}<br>class ServerRunnable implements Runnable{<br>    private Set<socket> clients;<br>    private Socket currentSocket;<br>     public ServerRunnable(Set<socket> clients,Socket socket) {<br>        this.clients=clients;<br>        this.currentSocket=socket;</socket></socket></p>
+<pre><code>}
+@Override
+public void run() {
+    // TODO Auto-generated method stub
+    //获取ip地址
+    String ip=currentSocket.getInetAddress().getHostAddress();
+    //接受和转发消息
+    BufferedReader br=null;
+    PrintWriter pw=null;
+    try {
+        br=new BufferedReader(new InputStreamReader(
+                currentSocket.getInputStream()));
+        String str=null;
+        //一直监听客户端是否发来数据
+        while(true)
+        {
+            //当读取数据发现不为空说明客户端发送了新的消息
+            if((str=br.readLine())!=null)
+            {
+                System.out.println(ip+&quot;说：&quot;+str);
+                for(Socket temp:clients)
+                {
+                    pw=new PrintWriter(
+                            new OutputStreamWriter(temp.getOutputStream())) ;
+                    pw.println(str);
+                    pw.flush();
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.*;
-import java.nio.Buffer;
-import java.util.*;
+                }
+</code></pre><p>​<br>                }</p>
+<pre><code>        }
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 
-public class ChatServer {
-private ServerSocket server;
-private Set<socket> clients=new HashSet<socket>();
-
-public static void main(String[] args) throws IOException {
-    new ChatServer();
 }
-public ChatServer() throws IOException {
+</code></pre><p>}</p>
+<p>package ChatClient;</p>
+<p>import java.awt.BorderLayout;<br>import java.awt.Container;<br>import java.awt.FlowLayout;<br>import java.awt.Toolkit;<br>import java.awt.event.ActionEvent;<br>import java.awt.event.ActionListener;<br>import java.awt.event.KeyAdapter;<br>import java.awt.event.KeyEvent;<br>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.io.OutputStreamWriter;<br>import java.io.PrintWriter;<br>import java.net.Socket;<br>import java.net.UnknownHostException;<br>import java.text.SimpleDateFormat;<br>import java.util.Date;</p>
+<p>import javax.swing.JButton;<br>import javax.swing.JFrame;<br>import javax.swing.JLabel;<br>import javax.swing.JPanel;<br>import javax.swing.JScrollPane;<br>import javax.swing.JSplitPane;<br>import javax.swing.JTextArea;</p>
+<p>public class ChatClient extends JFrame {</p>
+<pre><code>private static final long serialVersionUID = 1L;
+private Socket socket;
+private JTextArea sendArea;// 要发送信息的内容区域
+private JTextArea contentArea;// 聊天记录的内容区域
+private Container contentPane;
+private String name;// 当前用户名
+private String text;
 
-    server =new ServerSocket(8888);
-    System.out.println("服务器已经监听了端口……");
-    while(true)
-    {
-        Socket socket=server.accept();
-        clients.add(socket);
-        //获取Ip地址
-        String ip=socket.getInetAddress().getHostAddress();
-        System.out.println("有一个客户进来了，他的ip是："+ip);
-        //针对每个客户端，服务器都启动一个线程单独交流，将来将数据转发给所有的客户端
-        Thread thread=new Thread(new ServerRunnable(clients,socket));
+public static void main(String[] args) throws UnknownHostException, IOException {
+    // Socket socket=new Socket(&quot;127.0.0.1&quot;,8888);
+    new ChatClient(&quot;五&quot;).go();
+    new ChatClient(&quot;lijin&quot;).go();
+
+
+}
+
+public ChatClient(String name) {
+
+    try {
+        this.name = name;
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initGUI();
+        socket = new Socket(&quot;127.0.0.1&quot;, 8888);
+        // 监听服务器端
+        ClientThread thread = new ClientThread(socket, contentArea);
         thread.start();
 
-
-​        
-        }
-}
-}
-class ServerRunnable implements Runnable{
-    private Set<socket> clients;
-    private Socket currentSocket;
-     public ServerRunnable(Set<socket> clients,Socket socket) {
-        this.clients=clients;
-        this.currentSocket=socket;
-
-    }
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-        //获取ip地址
-        String ip=currentSocket.getInetAddress().getHostAddress();
-        //接受和转发消息
-        BufferedReader br=null;
-        PrintWriter pw=null;
-        try {
-            br=new BufferedReader(new InputStreamReader(
-                    currentSocket.getInputStream()));
-            String str=null;
-            //一直监听客户端是否发来数据
-            while(true)
-            {
-                //当读取数据发现不为空说明客户端发送了新的消息
-                if((str=br.readLine())!=null)
-                {
-                    System.out.println(ip+"说："+str);
-                    for(Socket temp:clients)
-                    {
-                        pw=new PrintWriter(
-                                new OutputStreamWriter(temp.getOutputStream())) ;
-                        pw.println(str);
-                        pw.flush();
-
-                    }
-
-
-​                    
-                }
-
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+    } catch (UnknownHostException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
 
 }
 
+public void initGUI() {
+    this.setSize(300, 400);
+    this.setTitle(&quot;我的聊天室&quot;);
+    contentPane = getContentPane();
+    int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+    this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
+    this.setResizable(false);
 
+    contentArea = new JTextArea();
 
-</socket></socket></socket></socket></pre>
+    contentArea.setEditable(false);
+    JScrollPane logPanel = new JScrollPane(contentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    sendArea = new JTextArea();
 
-<pre>
-package ChatClient;
-
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
-
-public class ChatClient extends JFrame {
-
-    private static final long serialVersionUID = 1L;
-    private Socket socket;
-    private JTextArea sendArea;// 要发送信息的内容区域
-    private JTextArea contentArea;// 聊天记录的内容区域
-    private Container contentPane;
-    private String name;// 当前用户名
-    private String text;
-
-    public static void main(String[] args) throws UnknownHostException, IOException {
-        // Socket socket=new Socket("127.0.0.1",8888);
-        new ChatClient("五").go();
-        new ChatClient("lijin").go();
-
-
-    }
-
-    public ChatClient(String name) {
-
-        try {
-            this.name = name;
-            this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            initGUI();
-            socket = new Socket("127.0.0.1", 8888);
-            // 监听服务器端
-            ClientThread thread = new ClientThread(socket, contentArea);
-            thread.start();
-
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-    public void initGUI() {
-        this.setSize(300, 400);
-        this.setTitle("我的聊天室");
-        contentPane = getContentPane();
-        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
-        this.setResizable(false);
-
-        contentArea = new JTextArea();
-
-        contentArea.setEditable(false);
-        JScrollPane logPanel = new JScrollPane(contentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        sendArea = new JTextArea();
-
-        sendArea.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    send();
-                }
-            }
-        });
-        JScrollPane sendPanel = new JScrollPane(sendArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        // 创建一个分割窗口
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, logPanel, sendPanel);
-        splitPane.setDividerLocation(250);
-        contentPane.add(splitPane, BorderLayout.CENTER);
-
-        // 下面的
-        JPanel jp = new JPanel();
-        jp.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        contentPane.add(jp, BorderLayout.SOUTH);
-
-        JLabel nameLbl = new JLabel("用户名：" + this.name + " ");
-        jp.add(nameLbl);
-
-        JButton resetBtn = new JButton("close");
-        resetBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        jp.add(resetBtn);
-
-        JButton sendBtn = new JButton("send");
-        jp.add(sendBtn);
-        sendBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+    sendArea.addKeyListener(new KeyAdapter() {
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 send();
             }
-        });
-    }
-
-    public void go() {
-        this.setVisible(true);
-    }
-
-    // 发送
-    public void send() {
-        String msg = sendArea.getText();
-        SimpleDateFormat formater = new SimpleDateFormat("HH:mm:ss");
-        String date = formater.format(new Date());
-        String sendStr = name + "" + date + "" + msg;
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-            pw.println(sendStr);
-            pw.flush();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-        // 清空发送框
-        sendArea.setText("");
-    }
+    });
+    JScrollPane sendPanel = new JScrollPane(sendArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    // 创建一个分割窗口
+    JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, logPanel, sendPanel);
+    splitPane.setDividerLocation(250);
+    contentPane.add(splitPane, BorderLayout.CENTER);
+
+    // 下面的
+    JPanel jp = new JPanel();
+    jp.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    contentPane.add(jp, BorderLayout.SOUTH);
+
+    JLabel nameLbl = new JLabel(&quot;用户名：&quot; + this.name + &quot; &quot;);
+    jp.add(nameLbl);
+
+    JButton resetBtn = new JButton(&quot;close&quot;);
+    resetBtn.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    });
+    jp.add(resetBtn);
+
+    JButton sendBtn = new JButton(&quot;send&quot;);
+    jp.add(sendBtn);
+    sendBtn.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            send();
+        }
+    });
 }
-// 客户端线程，一直监听服务器端所返回的消息
 
-class ClientThread extends Thread {
-    private Socket socket;
-    private JTextArea contentArea;
+public void go() {
+    this.setVisible(true);
+}
 
-    public ClientThread(Socket socket, JTextArea contentArea) {
-        this.socket = socket;
-        this.contentArea = contentArea;
-
+// 发送
+public void send() {
+    String msg = sendArea.getText();
+    SimpleDateFormat formater = new SimpleDateFormat(&quot;HH:mm:ss&quot;);
+    String date = formater.format(new Date());
+    String sendStr = name + &quot;&quot; + date + &quot;&quot; + msg;
+    PrintWriter pw = null;
+    try {
+        pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        pw.println(sendStr);
+        pw.flush();
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
-
-    public void run() {
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String str = null;
-            while (true) {
-                if ((str = br.readLine()) != null) {
-                    System.out.println(str);
-                    contentArea.append(str+'\n');
-                }
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-                if (socket != null) {
-                    socket.close();
-                }
-            } catch (Exception e2) {
-                // TODO: handle exception
-            }
-        }
-
-    }
+    // 清空发送框
+    sendArea.setText(&quot;&quot;);
+}
+</code></pre><p>}<br>// 客户端线程，一直监听服务器端所返回的消息</p>
+<p>class ClientThread extends Thread {<br>    private Socket socket;<br>    private JTextArea contentArea;</p>
+<pre><code>public ClientThread(Socket socket, JTextArea contentArea) {
+    this.socket = socket;
+    this.contentArea = contentArea;
 
 }
 
-</pre>
+public void run() {
+    BufferedReader br = null;
+    try {
+        br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String str = null;
+        while (true) {
+            if ((str = br.readLine()) != null) {
+                System.out.println(str);
+                contentArea.append(str+&apos;\n&apos;);
+            }
+        }
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } finally {
+        try {
+            if (br != null)
+                br.close();
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (Exception e2) {
+            // TODO: handle exception
+        }
+    }
+
+}
+</code></pre><p>}</p>
+
       
     </div>
     
@@ -813,6 +739,10 @@ class ClientThread extends Thread {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/07/unix1/" rel="prev" title="unix第一天笔记">
+                unix第一天笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -887,7 +817,7 @@ class ClientThread extends Thread {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -944,7 +874,7 @@ class ClientThread extends Thread {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">64.0k</span>
+    <span title="Site words total count">74.9k</span>
   
 </div>
 
@@ -971,7 +901,7 @@ class ClientThread extends Thread {
     <!-- 博客字数统计 -->
     <span class="site-pv">
       <i class="fa fa-pencil"></i>
-      博客全站共： <span class="post-count">64.0k</span> 字
+      博客全站共： <span class="post-count">74.9k</span> 字
     </span>
 </div>
         
