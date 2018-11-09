@@ -179,6 +179,17 @@
     </entry>
     
     <entry>
+      <title></title>
+      <link href="/2018/10/26/index24/"/>
+      <url>/2018/10/26/index24/</url>
+      
+        <content type="html"><![CDATA[<hr><p>##<a href="https://github.com/sjtgeren/sjt.git" target="_blank" rel="noopener">https://github.com/sjtgeren/sjt.git</a><br>title: java第二十四天笔记<br>author: SHI JIAN TAO<br>​—</p><p>day13<br>一.java.util.Properties:以键值成对的方式保存数据。<br>java.util.Map<br>   java.util.Hashtable<br>      java.util.Properties<br>外界传入参数：<br> 1)Properties可以查看JVM系统参数<br>    a)获取JVM系统配置<br>    Properties p = System.getProperties();<br>    p.list(System.out);<br>    b)设置JVM系统参数 -D<br>       如：-Dname=briup -Dage=30<br>   获取：Properties p=System.getProperties()<br>        String value=p.getProperties(String key);<br> 2)应用程序参数<br>     main(String[] args){}<br>    获取：第一个数据：args[0]<br>       第二个数据：args[1]<br>       …..<br> 3)使用文件(key=value)<br>  文件名:info.properties<br>  程序中写文件的路径：src/com/briup/reflect/info.properties</p><p>二. 反射 ：自描述或者自定义<br>  平时我们照镜子的时候，在镜子后面会有自己的影子，<br>其实java中的反射也是类似的，一个类或者对象通过反<br>射可以获得自身的对象，该对象是一个java.lang.Class<br>的对象(就像一个镜像文件)。一个对象或者类获得自身<br>的Class对象的过程称为反射。<br>java.lang.Class：是类镜像，镜像对象<br>Class类镜像的作用可以获取该类和该对象的所有属性，方法<br>和构造器，以及属性方法和构造器修饰符，修改私有属性的值。<br>调用方法和调用构造器等等。<br>Class—-实例化—–&gt;class—–实例化—–&gt;对象<br>对象——抽象化—–&gt;class——抽象化—–&gt;Class<br>抽象：具有相同属性和行为抽象出来<br>public class Class{<br>    Field[] fileds;<br>        Method[] methods;<br>        Constructor[]  cons;<br>}<br>反射API：<br>    java.lang.Class<br>    java.lang.reflect.Field<br>    java.lang.reflect.Method<br>    java.lang.reflect.Array<br>    java.lang.reflect.Constructor<br>class Person{}<br>Person创建100个对象，创建多少个Person的Class类型对象？<br>class Person{}<br>   1个，类加载的时候创建Person的Class类型对象。</p><p>通过反射操作的步骤：<br>1）获取类镜像(Class对象),三种方式<br>   a)Class.forName(String className)<br>   b)数据类型.class<br>   c)对象.getClass()<br>2)通过类镜像实例化对象(不通过new方式创建对象)<br>   Object obj=类镜像对象.newInstance()。<br>      默认会调用class类的无参构造器。<br>3)通过实例化对象操作属性，方法，构造器<br>   a)获取所有的属性(属性名和修饰符和数据类型)。<br>   b)获取所有的方法(方法名和修饰符和返回值和参数列表)<br>   c)获取所有构造器(名字和修饰符和参数列表)<br>   d)修饰属性的值<br>   e)调用方法:invoke()<br>   f)调用指定构造器创建的对象</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
       <title>java第二十三天笔记</title>
       <link href="/2018/10/22/index23/"/>
       <url>/2018/10/22/index23/</url>
