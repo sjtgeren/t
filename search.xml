@@ -4,6 +4,17 @@
     
     <entry>
       <title>oracle第六天笔记</title>
+      <link href="/2018/11/30/test/"/>
+      <url>/2018/11/30/test/</url>
+      
+        <content type="html"><![CDATA[<p>1)查询所有员工的ID，名字和所在部门的名称column first_name format a20Column name format a20Select s_emp.id,first_name,nameFrom s_emp,s_deptWhere dept_id=s_dept.id;2)查询员工的姓名和部门所在地区的名称Select s_emp.id,s_region.nameFrom s_emp,s_dept,s_regionWhere dept_id=s_dept.id and region_id=s_region.id;3）查询部门名称包含Sa的员工姓名薪水Select first_name,salary,name From s_emp,s_dept Where upper(name) like’%SA%’ and dept_id=s_dept.id;4）查询欧洲销售部门的薪水在1000到2000的员工信息  Select e.last_name,e.salary,r.name,d.nameFrom s_emp e,s_dept d,s_region rWhere e.dept_id=d.id and d.region_id=r.idAnd lower(r.name) =’europe’ and lower(d.name) =’sales’And e.salary between 1000 and 2000;5）查询部门名称是5位，该部门员工的薪水不等于1500，并按员工的薪水降序排序Select first_name,salary,nameFrom s_emp,s_deptWhere dept_id=s_dept.idAnd length(name)=5And salary !=1500Order by salary desc;6）创建下面这张表并插入数据create table s_gender(              id number(5) primary key,      minSal number(7),      maxSal number(7),      name varchar2(20));insert into s_gender values(1,0,1000,’蓝领’);insert into s_gender values(2,1000,1500,’白领’);insert into s_gender values(3,1500,2500,’金领’);commit;然后查询所有员工月薪涨500后的工资等级？ Select first_name,salary+500,s_gender.nameFrom s_emp,s_genderWhere salary+500 between minSal and maxSal;7）查询所有员工所在部门的名称，但是需要把所有部门给查询出来.insert into s_dept values(999,’教学部’,2);commit;方案一：Select s_emp.id,first_name,nameFrom s_emp,s_deptWhere dept_id(+)=s_dept.id;方案二：Select s_emp.id,first_name,nameFrom s_emp right join s_dept on dept_id=s_dept.id;8）查询员工所在部门的名称，包括没有部门号的员工方案一：Select s_emp.id,first_name,dept_id,nameFrom s_emp,s_deptWhere dept_id=s_dept.id(+);方案二：Select s_emp.id,first_name,dept_id,nameFrom s_emp left join s_dept on dept_id=s_dept.id;9）查询员工所在部门的信息，没有部门号的员工所有的部门都查询出来方案一：Select s_emp.id,first_name,s_dept.id,name,region_idFrom s_emp,s_deptWhere dept_id=s_dept.id(+)unionSelect s_emp.id,first_name,s_dept.id,name,region_idFrom s_emp,s_deptWhere dept_id(+)=s_dept.id;方案二：Select s_emp.id,first_name,nameFrom s_emp full join s_dept on dept_id=s_dept.id;10）查询所有员工的经理的last_name,salary包括没有经理的员工。Column last_name format a20select w.last_name,m.last_name,m.salaryfrom s_emp w,s_emp mwhere w.manager_id=m.id(+);11）部门表中前7条记录？Select id,name,region_idFrom s_deptWhere rownum&lt;=7;12）部门表中第3条到第5条数据？Select <em> from s_deptWhere rownum&lt;=5MinusSelect </em> from s_deptWhere rownum&lt;3;13)查询员工的全名并取别名name和员工的上级id?Select first_name||’ ‘||last_name name,manager_idFrom s_emp;14)查询顾客所对应的员工的last_name?Select name,last_nameFrom s_customer,s_empWhere sales_rep_id=s_emp.id;15)查询顾客所在的区域名称？Select s_customer.name,s_region.nameFrom s_customer,s_regionWhere region_id=s_region.id;16)查询部门所在的地区名？Select s_dept.name,s_region.nameFrom s_dept,s_regionWhere region_id=s_region.id;<br><br></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>oracle第六天笔记</title>
       <link href="/2018/11/20/oracle_exercise/"/>
       <url>/2018/11/20/oracle_exercise/</url>
       
